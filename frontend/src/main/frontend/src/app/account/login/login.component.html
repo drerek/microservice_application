@@ -1,0 +1,80 @@
+<article class="container">
+  <ngx-spinner bdOpacity = 0.9
+               bdColor = "#333"
+               size = "default"
+               color = "#fff"
+               type = "ball-beat"></ngx-spinner>
+  <div class="row">
+    <div class="col-md-7">
+      <div class="login-main">
+        <h4>Share events with your friends easily</h4>
+        <span>Some sample description text about the template goes here</span>
+
+        <h4>Choose present your friend really deserve</h4>
+        <span>Another description text about the template goes here</span>
+
+        <h4>Organize your calendar in convenient way</h4>
+        <span>Yet another sample description text can be placed in one line</span>
+
+        <h4>Be there and don't forget to tell about us</h4>
+        <span>Your last description text about your startup or business</span>
+      </div>
+
+    </div>
+
+
+    <div class="col-md-5 login-main">
+      <h2>LogIn</h2>
+      <div class="alert alert-danger" *ngIf="errorMessage">
+      {{errorMessage}}
+      </div>
+      <form name="form" role="form" (ngSubmit)="logIn()" #loginForm="ngForm">
+
+        <div class="form-group">
+          <label class="form-control-label" for="login">Username</label>
+          <input type="text" class="form-control" [(ngModel)]="account.login" id="login" name="login"
+                 #login="ngModel" placeholder="Enter login name" minlength=4 maxlength=50 required>
+          <div *ngIf="login.dirty && login.invalid">
+            <small class="form-text text-danger" *ngIf="login.errors.required">
+              Your login is required.
+            </small>
+            <small class="form-text text-danger" *ngIf="login.errors.minlength">
+              Your login is required to be at least 4 characters.
+            </small>
+            <small class="form-text text-danger" *ngIf="login.errors.maxlength">
+              Your password cannot be longer than 50 characters.
+            </small>
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="password">Password</label>
+          <input type="password" class="form-control" id="password" name="password" #password="ngModel"
+                 placeholder="Enter password" minlength=6 maxlength=50
+                 [(ngModel)]="account.password" required>
+          <div *ngIf="password.dirty && password.invalid">
+            <small class="form-text text-danger" *ngIf="password.errors.required">
+              Your password is required.
+            </small>
+            <small class="form-text text-danger" *ngIf="password.errors.minlength">
+              Your password is required to be at least 6 characters.
+            </small>
+            <small class="form-text text-danger" *ngIf="password.errors.maxlength">
+              Your password cannot be longer than 50 characters.
+            </small>
+          </div>
+        </div>
+        <a [routerLink]="['/recovery']">Forgot password?</a>
+        <div>
+          <button type="button" (click)="logIn()" [disabled]="loginForm.form.invalid" class="btn btn-primary">
+            LogIn
+          </button>
+          <button type="button" class="btn btn-primary" [routerLink]="['/register']">
+            Register
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</article>

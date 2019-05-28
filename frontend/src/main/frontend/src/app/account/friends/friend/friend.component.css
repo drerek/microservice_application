@@ -1,0 +1,22 @@
+.friend-info, .friend-action {
+  display: inline-block;
+}
+
+.close-btn {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.friend-info {
+  flex: 2;
+}
+
+.friend-action {
+  padding: 6px;
+  margin-right: 10px;
+}
+
+.row {
+  padding: 6px;
+}
