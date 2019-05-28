@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/eureka-name-server/eureka-name-server.iml" filepath="$PROJECT_DIR$/eureka-name-server/eureka-name-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/first-service/first-service.iml" filepath="$PROJECT_DIR$/first-service/first-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/second-service/second-service.iml" filepath="$PROJECT_DIR$/second-service/second-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/spring-boot-basic-microservice.iml" filepath="$PROJECT_DIR$/.idea/spring-boot-basic-microservice.iml" />
+    </modules>
+  </component>
+</project>
