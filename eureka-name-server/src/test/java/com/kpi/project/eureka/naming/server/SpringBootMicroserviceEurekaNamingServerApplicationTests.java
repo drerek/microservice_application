@@ -1,4 +1,4 @@
-package com.kpi.project.second.service.eureka.naming.server;
+package com.kpi.project.eureka.naming.server;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

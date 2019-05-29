@@ -1,4 +1,4 @@
-package com.kpi.project.second.service;
+package com.kpi.project.first.service;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
