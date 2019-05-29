@@ -1,13 +1,13 @@
-package com.meetup.meetup.dao.rowMappers;
+package com.kpi.project.first.service.dao.rowMappers;
 
-import com.meetup.meetup.entity.Item;
+import com.kpi.project.first.service.entity.Item;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
-import static com.meetup.meetup.keys.Key.*;
+import static com.kpi.project.first.service.keys.Key.*;
 
 public class ItemRowMapper implements RowMapper<Item> {
     @Override

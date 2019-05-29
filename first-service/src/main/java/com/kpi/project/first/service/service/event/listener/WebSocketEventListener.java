@@ -1,6 +1,6 @@
-package com.meetup.meetup.service.event.listener;
+package com.kpi.project.first.service.service.event.listener;
 
-import com.meetup.meetup.service.vm.ChatMessage;
+import com.kpi.project.first.service.service.vm.ChatMessage;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

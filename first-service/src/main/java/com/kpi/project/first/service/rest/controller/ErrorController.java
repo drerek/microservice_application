@@ -1,8 +1,8 @@
-package com.meetup.meetup.rest.controller;
+package com.kpi.project.first.service.rest.controller;
 
-import com.meetup.meetup.exception.runtime.CustomRuntimeException;
-import com.meetup.meetup.exception.runtime.frontend.detailed.FrontendDetailedException;
-import com.meetup.meetup.service.AccountService;
+import com.kpi.project.first.service.exception.runtime.CustomRuntimeException;
+import com.kpi.project.first.service.exception.runtime.frontend.detailed.FrontendDetailedException;
+import com.kpi.project.first.service.service.AccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;

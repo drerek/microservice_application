@@ -1,9 +1,9 @@
-package com.meetup.meetup.rest.controller;
+package com.kpi.project.first.service.rest.controller;
 
-import com.meetup.meetup.entity.Event;
-import com.meetup.meetup.entity.User;
-import com.meetup.meetup.service.EventImageService;
-import com.meetup.meetup.service.EventService;
+import com.kpi.project.first.service.entity.Event;
+import com.kpi.project.first.service.entity.User;
+import com.kpi.project.first.service.service.EventImageService;
+import com.kpi.project.first.service.service.EventService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

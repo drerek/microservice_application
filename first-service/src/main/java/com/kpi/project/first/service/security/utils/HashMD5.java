@@ -1,4 +1,4 @@
-package com.meetup.meetup.security.utils;
+package com.kpi.project.first.service.security.utils;
 
 import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;

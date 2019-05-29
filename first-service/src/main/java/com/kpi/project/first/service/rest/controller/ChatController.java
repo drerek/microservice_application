@@ -1,8 +1,8 @@
-package com.meetup.meetup.rest.controller;
+package com.kpi.project.first.service.rest.controller;
 
-import com.meetup.meetup.entity.Message;
-import com.meetup.meetup.service.ChatService;
-import com.meetup.meetup.service.vm.ChatIdsVM;
+import com.kpi.project.first.service.entity.Message;
+import com.kpi.project.first.service.service.ChatService;
+import com.kpi.project.first.service.service.vm.ChatIdsVM;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

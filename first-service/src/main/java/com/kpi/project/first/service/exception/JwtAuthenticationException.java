@@ -1,4 +1,4 @@
-package com.meetup.meetup.exception;
+package com.kpi.project.first.service.exception;
 
 import org.springframework.security.core.AuthenticationException;
 

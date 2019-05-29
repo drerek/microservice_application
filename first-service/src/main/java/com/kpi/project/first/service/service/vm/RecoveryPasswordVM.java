@@ -1,6 +1,6 @@
-package com.meetup.meetup.service.vm;
+package com.kpi.project.first.service.service.vm;
 
-import com.meetup.meetup.rest.controller.AccountController;
+import com.kpi.project.first.service.rest.controller.AccountController;
 import lombok.Data;
 
 import javax.validation.constraints.NotBlank;

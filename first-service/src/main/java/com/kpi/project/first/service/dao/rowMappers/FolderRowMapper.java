@@ -1,12 +1,12 @@
-package com.meetup.meetup.dao.rowMappers;
+package com.kpi.project.first.service.dao.rowMappers;
 
-import com.meetup.meetup.entity.Folder;
+import com.kpi.project.first.service.entity.Folder;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static com.meetup.meetup.keys.Key.*;
+import static com.kpi.project.first.service.keys.Key.*;
 
 public class FolderRowMapper implements RowMapper<Folder> {
     @Override

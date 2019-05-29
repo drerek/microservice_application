@@ -1,8 +1,8 @@
-package com.meetup.meetup.service;
+package com.kpi.project.first.service.service;
 
-import com.meetup.meetup.dao.UserDao;
-import com.meetup.meetup.entity.User;
-import com.meetup.meetup.security.jwt.SecretKeyProvider;
+import com.kpi.project.first.service.dao.UserDao;
+import com.kpi.project.first.service.entity.User;
+import com.kpi.project.first.service.security.jwt.SecretKeyProvider;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;

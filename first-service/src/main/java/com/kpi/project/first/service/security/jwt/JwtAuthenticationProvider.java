@@ -1,8 +1,9 @@
-package com.meetup.meetup.security.jwt;
+package com.kpi.project.first.service.security.jwt;
 
-import com.meetup.meetup.entity.User;
-import com.meetup.meetup.exception.runtime.AuthenticationException;
-import com.meetup.meetup.service.JwtService;
+import com.kpi.project.first.service.entity.User;
+import com.kpi.project.first.service.exception.runtime.AuthenticationException;
+import com.kpi.project.first.service.service.JwtService;
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +12,11 @@ import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
-import static com.meetup.meetup.keys.Key.EXCEPTION_JWT_AUTHENTICATION;
-import static com.meetup.meetup.keys.Key.EXCEPTION_JWT_IS_NOT_CORRECT;
+import static com.kpi.project.first.service.keys.Key.EXCEPTION_JWT_AUTHENTICATION;
+import static com.kpi.project.first.service.keys.Key.EXCEPTION_JWT_IS_NOT_CORRECT;
 
 @Component
 @PropertySource("classpath:strings.properties")
@@ -22,11 +24,14 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
 
     private static Logger log = LoggerFactory.getLogger(JwtAuthenticationProvider.class);
 
-    @Autowired
     private JwtService jwtService;
 
-    @Autowired
-    private Environment env;
+    private final Environment env;
+
+    public JwtAuthenticationProvider(JwtService jwtService, Environment env) {
+        this.jwtService = jwtService;
+        this.env = env;
+    }
 
     @Override
     public Authentication authenticate(Authentication authentication) {

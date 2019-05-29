@@ -1,6 +1,6 @@
-package com.meetup.meetup.service;
+package com.kpi.project.first.service.service;
 
-import com.meetup.meetup.exception.runtime.frontend.detailed.FileUploadException;
+import com.kpi.project.first.service.exception.runtime.frontend.detailed.FileUploadException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -11,7 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static com.meetup.meetup.keys.Key.EXCEPTION_FILE_UPLOAD;
+import static com.kpi.project.first.service.keys.Key.EXCEPTION_FILE_UPLOAD;
 
 @Service
 @PropertySource("classpath:links.properties")

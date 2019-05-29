@@ -1,6 +1,6 @@
-package com.meetup.meetup.config;
+package com.kpi.project.first.service.config;
 
-import com.meetup.meetup.aop.logging.LoggingAspect;
+import com.kpi.project.first.service.aop.logging.LoggingAspect;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;

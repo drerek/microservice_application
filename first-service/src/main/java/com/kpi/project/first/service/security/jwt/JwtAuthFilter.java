@@ -1,6 +1,6 @@
-package com.meetup.meetup.security.jwt;
+package com.kpi.project.first.service.security.jwt;
 
-import com.meetup.meetup.exception.runtime.AuthenticationException;
+import com.kpi.project.first.service.exception.runtime.AuthenticationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static com.meetup.meetup.keys.Key.EXCEPTION_JWT_IS_NOT_CORRECT;
+import static com.kpi.project.first.service.keys.Key.EXCEPTION_JWT_IS_NOT_CORRECT;
 
 
 @PropertySource("classpath:strings.properties")

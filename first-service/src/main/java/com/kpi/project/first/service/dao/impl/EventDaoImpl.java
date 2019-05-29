@@ -1,17 +1,17 @@
-package com.meetup.meetup.dao.impl;
+package com.kpi.project.first.service.dao.impl;
 
-import com.meetup.meetup.dao.AbstractDao;
-import com.meetup.meetup.dao.EventDao;
-import com.meetup.meetup.dao.UserDao;
-import com.meetup.meetup.dao.rowMappers.EventRowMapper;
-import com.meetup.meetup.dao.rowMappers.UserRowMapper;
-import com.meetup.meetup.entity.Event;
-import com.meetup.meetup.entity.Role;
-import com.meetup.meetup.entity.User;
-import com.meetup.meetup.exception.runtime.DatabaseWorkException;
-import com.meetup.meetup.exception.runtime.DeleteException;
-import com.meetup.meetup.exception.runtime.EntityNotFoundException;
-import com.meetup.meetup.exception.runtime.UpdateException;
+import com.kpi.project.first.service.dao.AbstractDao;
+import com.kpi.project.first.service.dao.EventDao;
+import com.kpi.project.first.service.dao.UserDao;
+import com.kpi.project.first.service.dao.rowMappers.EventRowMapper;
+import com.kpi.project.first.service.dao.rowMappers.UserRowMapper;
+import com.kpi.project.first.service.entity.Event;
+import com.kpi.project.first.service.entity.Role;
+import com.kpi.project.first.service.entity.User;
+import com.kpi.project.first.service.exception.runtime.DatabaseWorkException;
+import com.kpi.project.first.service.exception.runtime.DeleteException;
+import com.kpi.project.first.service.exception.runtime.EntityNotFoundException;
+import com.kpi.project.first.service.exception.runtime.UpdateException;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.meetup.meetup.keys.Key.*;
+import static com.kpi.project.first.service.keys.Key.*;
 
 @Repository
 @PropertySource("classpath:sqlDao.properties")

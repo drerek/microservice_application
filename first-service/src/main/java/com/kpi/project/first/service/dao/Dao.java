@@ -1,4 +1,4 @@
-package com.meetup.meetup.dao;
+package com.kpi.project.first.service.dao;
 
 /**
  * Generic Dao interface for all entities.

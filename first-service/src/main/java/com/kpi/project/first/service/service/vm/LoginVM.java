@@ -1,17 +1,13 @@
-package com.meetup.meetup.service.vm;
+package com.kpi.project.first.service.service.vm;
 
-import com.meetup.meetup.entity.User;
-import com.meetup.meetup.rest.controller.AccountController;
+import com.kpi.project.first.service.entity.User;
+import com.kpi.project.first.service.rest.controller.AccountController;
 import lombok.Data;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-/**
- * Used for get {@link User} credentials at
- * {@link AccountController#login(LoginVM, HttpServletResponse)}.
- */
 @Data
 public class LoginVM {
     @NotBlank

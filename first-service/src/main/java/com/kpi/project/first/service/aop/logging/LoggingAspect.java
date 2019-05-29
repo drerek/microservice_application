@@ -1,4 +1,4 @@
-package com.meetup.meetup.aop.logging;
+package com.kpi.project.first.service.aop.logging;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -34,10 +34,10 @@ public class LoggingAspect {
     /**
      * Pointcut that matches all Spring beans in the application's main packages.
      */
-    @Pointcut("within(com.meetup.meetup.dao..*)" +
-            "             || within(com.meetup.meetup.service..*)" +
-            "             || within(com.meetup.meetup.security..*)" +
-            "             || within(com.meetup.meetup.rest..*)")
+    @Pointcut("within(com.kpi.project.first.service.dao..*)" +
+            "             || within(com.kpi.project.first.service.service..*)" +
+            "             || within(com.kpi.project.first.service.security..*)" +
+            "             || within(com.kpi.project.first.service.rest..*)")
     public void applicationPackagePointcut() {
         // Method is empty as this is just a Pointcut, the implementations are in the advices.
     }

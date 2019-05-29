@@ -1,7 +1,7 @@
-package com.meetup.meetup.dao.rowMappers;
+package com.kpi.project.first.service.dao.rowMappers;
 
 
-import com.meetup.meetup.entity.User;
+import com.kpi.project.first.service.entity.User;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 
-import static com.meetup.meetup.keys.Key.*;
+import static com.kpi.project.first.service.keys.Key.*;
 
 @Component
 public class UserRowMapper implements RowMapper<User> {

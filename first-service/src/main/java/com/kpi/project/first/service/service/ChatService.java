@@ -1,9 +1,9 @@
-package com.meetup.meetup.service;
+package com.kpi.project.first.service.service;
 
-import com.meetup.meetup.dao.ChatDao;
-import com.meetup.meetup.entity.Message;
-import com.meetup.meetup.exception.runtime.DeleteException;
-import com.meetup.meetup.service.vm.ChatIdsVM;
+import com.kpi.project.first.service.dao.ChatDao;
+import com.kpi.project.first.service.entity.Message;
+import com.kpi.project.first.service.exception.runtime.DeleteException;
+import com.kpi.project.first.service.service.vm.ChatIdsVM;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +16,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.meetup.meetup.keys.Key.EXCEPTION_DELETE;
-import static com.meetup.meetup.keys.Key.EXCEPTION_UPDATE;
+import static com.kpi.project.first.service.keys.Key.EXCEPTION_DELETE;
+import static com.kpi.project.first.service.keys.Key.EXCEPTION_UPDATE;
 
 @Service
 @PropertySource("classpath:strings.properties")

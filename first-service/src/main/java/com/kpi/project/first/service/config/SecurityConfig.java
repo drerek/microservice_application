@@ -1,9 +1,10 @@
-package com.meetup.meetup.config;
+package com.kpi.project.first.service.config;
 
-import com.meetup.meetup.security.jwt.JwtAuthFilter;
-import com.meetup.meetup.security.jwt.JwtAuthenticationEntryPoint;
-import com.meetup.meetup.security.jwt.JwtAuthenticationProvider;
-import com.meetup.meetup.security.jwt.JwtSuccessHandler;
+import com.kpi.project.first.service.security.jwt.JwtAuthFilter;
+import com.kpi.project.first.service.security.jwt.JwtAuthenticationEntryPoint;
+import com.kpi.project.first.service.security.jwt.JwtAuthenticationProvider;
+import com.kpi.project.first.service.security.jwt.JwtSuccessHandler;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,21 +22,19 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import java.util.Collections;
 
-import static com.meetup.meetup.keys.Key.URL_API_PATTERN;
-import static com.meetup.meetup.keys.Key.URL_AUTH_PATTERN;
+import static com.kpi.project.first.service.keys.Key.URL_API_PATTERN;
+import static com.kpi.project.first.service.keys.Key.URL_AUTH_PATTERN;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled=true)
 @PropertySource("classpath:strings.properties")
+@AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public static final String ROLE_USER = "ROLE_USER";
 
-    @Autowired
     private JwtAuthenticationProvider jwtAuthenticationProvider;
-    @Autowired
     private JwtAuthenticationEntryPoint jwtAuthEndPoint;
-    @Autowired
     private Environment env;
 
     @Bean

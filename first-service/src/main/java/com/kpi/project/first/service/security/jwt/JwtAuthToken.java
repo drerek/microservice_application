@@ -1,4 +1,4 @@
-package com.meetup.meetup.security.jwt;
+package com.kpi.project.first.service.security.jwt;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

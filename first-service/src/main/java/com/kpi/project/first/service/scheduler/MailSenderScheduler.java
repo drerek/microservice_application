@@ -1,11 +1,11 @@
-package com.meetup.meetup.scheduler;
+package com.kpi.project.first.service.scheduler;
 
-import com.meetup.meetup.dao.EventDao;
-import com.meetup.meetup.dao.UserDao;
-import com.meetup.meetup.entity.Event;
-import com.meetup.meetup.entity.User;
-import com.meetup.meetup.service.MailService;
-import com.meetup.meetup.service.PdfCreateService;
+import com.kpi.project.first.service.dao.EventDao;
+import com.kpi.project.first.service.dao.UserDao;
+import com.kpi.project.first.service.entity.Event;
+import com.kpi.project.first.service.entity.User;
+import com.kpi.project.first.service.service.MailService;
+import com.kpi.project.first.service.service.PdfCreateService;
 import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +20,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import static com.meetup.meetup.keys.Key.*;
+import static com.kpi.project.first.service.keys.Key.*;
 
 @Component
 public class MailSenderScheduler {

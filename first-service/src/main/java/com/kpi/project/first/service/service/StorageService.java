@@ -1,21 +1,21 @@
-package com.meetup.meetup.service;
+package com.kpi.project.first.service.service;
 
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import com.meetup.meetup.dao.UserDao;
-import com.meetup.meetup.entity.User;
-import com.meetup.meetup.exception.runtime.frontend.detailed.FileUploadException;
-import com.meetup.meetup.security.AuthenticationFacade;
+import com.kpi.project.first.service.dao.UserDao;
+import com.kpi.project.first.service.entity.User;
+import com.kpi.project.first.service.exception.runtime.frontend.detailed.FileUploadException;
+import com.kpi.project.first.service.security.AuthenticationFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import static com.meetup.meetup.keys.Key.EXCEPTION_FILE_UPLOAD;
+import static com.kpi.project.first.service.keys.Key.EXCEPTION_FILE_UPLOAD;
 
 
 @Service

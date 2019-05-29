@@ -1,4 +1,4 @@
-package com.meetup.meetup.exception.runtime;
+package com.kpi.project.first.service.exception.runtime;
 
 public class HashAlgorithmException  extends CustomRuntimeException {
     public HashAlgorithmException(String message) {

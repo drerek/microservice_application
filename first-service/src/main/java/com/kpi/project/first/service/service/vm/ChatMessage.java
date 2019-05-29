@@ -1,4 +1,4 @@
-package com.meetup.meetup.service.vm;
+package com.kpi.project.first.service.service.vm;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

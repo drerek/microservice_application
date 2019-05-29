@@ -1,6 +1,6 @@
-package com.meetup.meetup.security.jwt;
+package com.kpi.project.first.service.security.jwt;
 
-import com.meetup.meetup.exception.runtime.SecretKeyNotFoundException;
+import com.kpi.project.first.service.exception.runtime.SecretKeyNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static com.meetup.meetup.keys.Key.EXCEPTION_KEY_NOT_FOUND;
+import static com.kpi.project.first.service.keys.Key.EXCEPTION_KEY_NOT_FOUND;
 
 @Component
 @PropertySource("classpath:strings.properties")

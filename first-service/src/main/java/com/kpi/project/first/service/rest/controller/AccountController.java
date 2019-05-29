@@ -1,10 +1,10 @@
-package com.meetup.meetup.rest.controller;
+package com.kpi.project.first.service.rest.controller;
 
-import com.meetup.meetup.entity.User;
-import com.meetup.meetup.service.AccountService;
-import com.meetup.meetup.service.vm.LoginVM;
-import com.meetup.meetup.service.vm.RecoveryPasswordVM;
-import com.meetup.meetup.service.vm.UserAndTokenVM;
+import com.kpi.project.first.service.entity.User;
+import com.kpi.project.first.service.service.AccountService;
+import com.kpi.project.first.service.service.vm.LoginVM;
+import com.kpi.project.first.service.service.vm.RecoveryPasswordVM;
+import com.kpi.project.first.service.service.vm.UserAndTokenVM;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

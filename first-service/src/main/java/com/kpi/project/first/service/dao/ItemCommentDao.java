@@ -1,6 +1,6 @@
-package com.meetup.meetup.dao;
+package com.kpi.project.first.service.dao;
 
-import com.meetup.meetup.entity.ItemComment;
+import com.kpi.project.first.service.entity.ItemComment;
 
 import java.util.List;
 

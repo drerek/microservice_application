@@ -1,7 +1,7 @@
-package com.meetup.meetup.security;
+package com.kpi.project.first.service.security;
 
-import com.meetup.meetup.entity.User;
-import com.meetup.meetup.exception.runtime.AuthenticationException;
+import com.kpi.project.first.service.entity.User;
+import com.kpi.project.first.service.exception.runtime.AuthenticationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import static com.meetup.meetup.keys.Key.EXCEPTION_AUTHENTICATION;
+import static com.kpi.project.first.service.keys.Key.EXCEPTION_AUTHENTICATION;
 
 /**
  * Used for get authenticated {@link User}.

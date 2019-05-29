@@ -1,11 +1,11 @@
-package com.meetup.meetup.service;
+package com.kpi.project.first.service.service;
 
-import com.meetup.meetup.dao.ChatDao;
-import com.meetup.meetup.dao.EventDao;
-import com.meetup.meetup.dao.UserDao;
-import com.meetup.meetup.entity.*;
-import com.meetup.meetup.exception.runtime.frontend.detailed.LoginNotFoundException;
-import com.meetup.meetup.security.AuthenticationFacade;
+import com.kpi.project.first.service.dao.ChatDao;
+import com.kpi.project.first.service.dao.EventDao;
+import com.kpi.project.first.service.dao.UserDao;
+import com.kpi.project.first.service.entity.*;
+import com.kpi.project.first.service.exception.runtime.frontend.detailed.LoginNotFoundException;
+import com.kpi.project.first.service.security.AuthenticationFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-import static com.meetup.meetup.keys.Key.EXCEPTION_LOGIN_NOT_FOUND;
+import static com.kpi.project.first.service.keys.Key.EXCEPTION_LOGIN_NOT_FOUND;
 
 @Service
 @PropertySource("classpath:strings.properties")

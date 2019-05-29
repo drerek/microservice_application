@@ -1,17 +1,17 @@
-package com.meetup.meetup.service;
+package com.kpi.project.first.service.service;
 
-import com.meetup.meetup.dao.UserDao;
-import com.meetup.meetup.entity.User;
-import com.meetup.meetup.exception.runtime.BadTokenException;
-import com.meetup.meetup.exception.runtime.DatabaseWorkException;
-import com.meetup.meetup.exception.runtime.HashAlgorithmException;
-import com.meetup.meetup.exception.runtime.NoTokenException;
-import com.meetup.meetup.exception.runtime.frontend.detailed.*;
-import com.meetup.meetup.security.AuthenticationFacade;
-import com.meetup.meetup.security.utils.HashMD5;
-import com.meetup.meetup.service.vm.LoginVM;
-import com.meetup.meetup.service.vm.RecoveryPasswordVM;
-import com.meetup.meetup.service.vm.UserAndTokenVM;
+import com.kpi.project.first.service.dao.UserDao;
+import com.kpi.project.first.service.entity.User;
+import com.kpi.project.first.service.exception.runtime.BadTokenException;
+import com.kpi.project.first.service.exception.runtime.DatabaseWorkException;
+import com.kpi.project.first.service.exception.runtime.HashAlgorithmException;
+import com.kpi.project.first.service.exception.runtime.NoTokenException;
+import com.kpi.project.first.service.exception.runtime.frontend.detailed.*;
+import com.kpi.project.first.service.security.AuthenticationFacade;
+import com.kpi.project.first.service.security.utils.HashMD5;
+import com.kpi.project.first.service.service.vm.LoginVM;
+import com.kpi.project.first.service.service.vm.RecoveryPasswordVM;
+import com.kpi.project.first.service.service.vm.UserAndTokenVM;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Timestamp;
 
-import static com.meetup.meetup.keys.Key.*;
+import static com.kpi.project.first.service.keys.Key.*;
 
 @Component
 @PropertySource("classpath:strings.properties")

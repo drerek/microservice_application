@@ -1,6 +1,6 @@
-package com.meetup.meetup.service.mail;
+package com.kpi.project.first.service.service.mail;
 
-import com.meetup.meetup.service.AccountService;
+import com.kpi.project.first.service.service.AccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.PropertySource;

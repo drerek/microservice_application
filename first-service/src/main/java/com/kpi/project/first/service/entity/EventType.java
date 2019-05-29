@@ -1,4 +1,4 @@
-package com.meetup.meetup.entity;
+package com.kpi.project.first.service.entity;
 
 
 public enum EventType {

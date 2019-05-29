@@ -1,4 +1,4 @@
-package com.meetup.meetup.config;
+package com.kpi.project.first.service.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

@@ -1,4 +1,4 @@
-package com.meetup.meetup.exception.runtime;
+package com.kpi.project.first.service.exception.runtime;
 
 
 public class DeleteException extends CustomRuntimeException {

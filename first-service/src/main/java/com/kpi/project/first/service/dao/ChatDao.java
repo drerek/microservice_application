@@ -1,8 +1,8 @@
-package com.meetup.meetup.dao;
+package com.kpi.project.first.service.dao;
 
-import com.meetup.meetup.entity.Message;
-import com.meetup.meetup.service.vm.ChatCheckEntity;
-import com.meetup.meetup.service.vm.ChatIdsVM;
+import com.kpi.project.first.service.entity.Message;
+import com.kpi.project.first.service.service.vm.ChatCheckEntity;
+import com.kpi.project.first.service.service.vm.ChatIdsVM;
 
 import java.util.List;
 

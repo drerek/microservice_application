@@ -1,6 +1,6 @@
-package com.meetup.meetup.exception.runtime;
+package com.kpi.project.first.service.exception.runtime;
 
-import com.meetup.meetup.exception.runtime.CustomRuntimeException;
+import com.kpi.project.first.service.exception.runtime.CustomRuntimeException;
 
 public class BadTokenException extends CustomRuntimeException {
     public BadTokenException(String message) {

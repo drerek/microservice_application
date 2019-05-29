@@ -1,10 +1,10 @@
-package com.meetup.meetup.security.authorization;
+package com.kpi.project.first.service.security.authorization;
 
-import com.meetup.meetup.dao.ChatDao;
-import com.meetup.meetup.dao.EventDao;
-import com.meetup.meetup.entity.Role;
-import com.meetup.meetup.security.AuthenticationFacade;
-import com.meetup.meetup.service.vm.ChatCheckEntity;
+import com.kpi.project.first.service.dao.ChatDao;
+import com.kpi.project.first.service.dao.EventDao;
+import com.kpi.project.first.service.entity.Role;
+import com.kpi.project.first.service.security.AuthenticationFacade;
+import com.kpi.project.first.service.service.vm.ChatCheckEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

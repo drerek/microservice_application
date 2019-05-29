@@ -1,4 +1,4 @@
-package com.meetup.meetup.dao;
+package com.kpi.project.first.service.dao;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

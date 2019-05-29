@@ -1,6 +1,6 @@
-package com.meetup.meetup.security.authorization;
+package com.kpi.project.first.service.security.authorization;
 
-import com.meetup.meetup.security.AuthenticationFacade;
+import com.kpi.project.first.service.security.AuthenticationFacade;
 
 public abstract class AbstractAuthorization {
 

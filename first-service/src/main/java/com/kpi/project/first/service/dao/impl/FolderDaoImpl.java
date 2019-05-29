@@ -1,13 +1,13 @@
-package com.meetup.meetup.dao.impl;
+package com.kpi.project.first.service.dao.impl;
 
-import com.meetup.meetup.dao.AbstractDao;
-import com.meetup.meetup.dao.FolderDao;
-import com.meetup.meetup.dao.rowMappers.FolderRowMapper;
-import com.meetup.meetup.entity.Folder;
-import com.meetup.meetup.exception.runtime.DatabaseWorkException;
-import com.meetup.meetup.exception.runtime.DeleteException;
-import com.meetup.meetup.exception.runtime.EntityNotFoundException;
-import com.meetup.meetup.exception.runtime.UpdateException;
+import com.kpi.project.first.service.dao.AbstractDao;
+import com.kpi.project.first.service.dao.FolderDao;
+import com.kpi.project.first.service.dao.rowMappers.FolderRowMapper;
+import com.kpi.project.first.service.entity.Folder;
+import com.kpi.project.first.service.exception.runtime.DatabaseWorkException;
+import com.kpi.project.first.service.exception.runtime.DeleteException;
+import com.kpi.project.first.service.exception.runtime.EntityNotFoundException;
+import com.kpi.project.first.service.exception.runtime.UpdateException;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.dao.DataAccessException;
@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.meetup.meetup.keys.Key.*;
+import static com.kpi.project.first.service.keys.Key.*;
 
 @Repository
 @PropertySource("classpath:sqlDao.properties")

@@ -1,10 +1,10 @@
-package com.meetup.meetup.service;
+package com.kpi.project.first.service.service;
 
-import com.meetup.meetup.dao.ItemDao;
-import com.meetup.meetup.dao.UserDao;
-import com.meetup.meetup.entity.Item;
-import com.meetup.meetup.entity.User;
-import com.meetup.meetup.exception.runtime.EntityNotFoundException;
+import com.kpi.project.first.service.dao.ItemDao;
+import com.kpi.project.first.service.dao.UserDao;
+import com.kpi.project.first.service.entity.Item;
+import com.kpi.project.first.service.entity.User;
+import com.kpi.project.first.service.exception.runtime.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.meetup.meetup.keys.Key.EXCEPTION_ENTITY_NOT_FOUND;
+import static com.kpi.project.first.service.keys.Key.EXCEPTION_ENTITY_NOT_FOUND;
 
 @Service
 @PropertySource("classpath:strings.properties")

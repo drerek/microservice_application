@@ -1,7 +1,7 @@
-package com.meetup.meetup.security.jwt;
+package com.kpi.project.first.service.security.jwt;
 
-import com.meetup.meetup.config.SecurityConfig;
-import com.meetup.meetup.entity.User;
+import com.kpi.project.first.service.config.SecurityConfig;
+import com.kpi.project.first.service.entity.User;
 import jdk.nashorn.internal.parser.Token;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;

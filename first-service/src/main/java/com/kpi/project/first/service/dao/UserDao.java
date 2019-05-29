@@ -1,6 +1,6 @@
-package com.meetup.meetup.dao;
+package com.kpi.project.first.service.dao;
 
-import com.meetup.meetup.entity.User;
+import com.kpi.project.first.service.entity.User;
 
 import java.util.List;
 

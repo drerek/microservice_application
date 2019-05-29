@@ -1,13 +1,13 @@
-package com.meetup.meetup.dao.impl;
+package com.kpi.project.first.service.dao.impl;
 
-import com.meetup.meetup.dao.ChatDao;
-import com.meetup.meetup.dao.rowMappers.MessageRowMapper;
-import com.meetup.meetup.entity.Message;
-import com.meetup.meetup.entity.Role;
-import com.meetup.meetup.exception.runtime.DatabaseWorkException;
-import com.meetup.meetup.exception.runtime.EntityNotFoundException;
-import com.meetup.meetup.service.vm.ChatCheckEntity;
-import com.meetup.meetup.service.vm.ChatIdsVM;
+import com.kpi.project.first.service.dao.ChatDao;
+import com.kpi.project.first.service.dao.rowMappers.MessageRowMapper;
+import com.kpi.project.first.service.entity.Message;
+import com.kpi.project.first.service.entity.Role;
+import com.kpi.project.first.service.exception.runtime.DatabaseWorkException;
+import com.kpi.project.first.service.exception.runtime.EntityNotFoundException;
+import com.kpi.project.first.service.service.vm.ChatCheckEntity;
+import com.kpi.project.first.service.service.vm.ChatIdsVM;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.meetup.meetup.keys.Key.*;
+import static com.kpi.project.first.service.keys.Key.*;
 
 @Repository
 public class ChatDaoImpl implements ChatDao {

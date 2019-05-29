@@ -1,13 +1,13 @@
-package com.meetup.meetup.dao.impl;
+package com.kpi.project.first.service.dao.impl;
 
-import com.meetup.meetup.dao.AbstractDao;
-import com.meetup.meetup.dao.ItemDao;
-import com.meetup.meetup.dao.rowMappers.ItemFullInfoRowMapper;
-import com.meetup.meetup.dao.rowMappers.ItemRowMapper;
-import com.meetup.meetup.entity.Item;
-import com.meetup.meetup.entity.ItemPriority;
-import com.meetup.meetup.exception.runtime.DatabaseWorkException;
-import com.meetup.meetup.exception.runtime.frontend.detailed.ItemIsInWishListException;
+import com.kpi.project.first.service.dao.AbstractDao;
+import com.kpi.project.first.service.dao.ItemDao;
+import com.kpi.project.first.service.dao.rowMappers.ItemFullInfoRowMapper;
+import com.kpi.project.first.service.dao.rowMappers.ItemRowMapper;
+import com.kpi.project.first.service.entity.Item;
+import com.kpi.project.first.service.entity.ItemPriority;
+import com.kpi.project.first.service.exception.runtime.DatabaseWorkException;
+import com.kpi.project.first.service.exception.runtime.frontend.detailed.ItemIsInWishListException;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.dao.DataAccessException;
@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.Timestamp;
 import java.util.*;
 
-import static com.meetup.meetup.keys.Key.*;
+import static com.kpi.project.first.service.keys.Key.*;
 
 @Repository
 @PropertySource("classpath:sqlDao.properties")

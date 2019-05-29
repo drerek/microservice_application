@@ -1,17 +1,13 @@
-package com.meetup.meetup.service.vm;
+package com.kpi.project.first.service.service.vm;
 
-import com.meetup.meetup.entity.User;
-import com.meetup.meetup.rest.controller.AccountController;
+import com.kpi.project.first.service.entity.User;
+import com.kpi.project.first.service.rest.controller.AccountController;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Used for send {@link User} with token after him authentication {@link AccountController#login(LoginVM loginModel,
-        HttpServletResponse response)}.
- */
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)

@@ -1,6 +1,6 @@
-package com.meetup.meetup.scheduler;
+package com.kpi.project.first.service.scheduler;
 
-import com.meetup.meetup.dao.UserDao;
+import com.kpi.project.first.service.dao.UserDao;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
-package com.meetup.meetup.rest.controller;
+package com.kpi.project.first.service.rest.controller;
 
-import com.meetup.meetup.entity.Folder;
-import com.meetup.meetup.service.FolderService;
+import com.kpi.project.first.service.entity.Folder;
+import com.kpi.project.first.service.service.FolderService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

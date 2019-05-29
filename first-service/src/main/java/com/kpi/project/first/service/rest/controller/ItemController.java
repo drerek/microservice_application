@@ -1,9 +1,9 @@
-package com.meetup.meetup.rest.controller;
+package com.kpi.project.first.service.rest.controller;
 
 
-import com.meetup.meetup.entity.Item;
+import com.kpi.project.first.service.entity.Item;
 
-import com.meetup.meetup.service.StorageService;
+import com.kpi.project.first.service.service.StorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import com.meetup.meetup.service.ItemService;
+import com.kpi.project.first.service.service.ItemService;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;

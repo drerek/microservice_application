@@ -1,8 +1,8 @@
-package com.meetup.meetup.scheduler;
+package com.kpi.project.first.service.scheduler;
 
-import com.meetup.meetup.entity.Event;
-import com.meetup.meetup.exception.runtime.ParseDateException;
-import com.meetup.meetup.service.EventService;
+import com.kpi.project.first.service.entity.Event;
+import com.kpi.project.first.service.exception.runtime.ParseDateException;
+import com.kpi.project.first.service.service.EventService;
 import org.apache.commons.lang3.time.DateUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import static com.meetup.meetup.keys.Key.EXCEPTION_PARSE_DATE;
+import static com.kpi.project.first.service.keys.Key.EXCEPTION_PARSE_DATE;
 
 @Component
 public class EventUpdateScheduler {

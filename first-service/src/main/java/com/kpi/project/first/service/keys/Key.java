@@ -1,4 +1,4 @@
-package com.meetup.meetup.keys;
+package com.kpi.project.first.service.keys;
 
 public final class Key {
 

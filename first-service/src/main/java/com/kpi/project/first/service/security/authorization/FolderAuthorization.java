@@ -1,7 +1,7 @@
-package com.meetup.meetup.security.authorization;
+package com.kpi.project.first.service.security.authorization;
 
-import com.meetup.meetup.entity.Folder;
-import com.meetup.meetup.security.AuthenticationFacade;
+import com.kpi.project.first.service.entity.Folder;
+import com.kpi.project.first.service.security.AuthenticationFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

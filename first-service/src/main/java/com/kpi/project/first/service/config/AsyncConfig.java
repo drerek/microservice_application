@@ -1,4 +1,4 @@
-package com.meetup.meetup.config;
+package com.kpi.project.first.service.config;
 
 import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.aop.interceptor.SimpleAsyncUncaughtExceptionHandler;

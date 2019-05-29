@@ -1,7 +1,7 @@
-package com.meetup.meetup.service;
+package com.kpi.project.first.service.service;
 
-import com.meetup.meetup.entity.User;
-import com.meetup.meetup.service.mail.MailBuilder;
+import com.kpi.project.first.service.entity.User;
+import com.kpi.project.first.service.service.mail.MailBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
