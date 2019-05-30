@@ -1,10 +1,10 @@
-package com.kpi.project.first.service.rest.controller;
+package com.kpi.project.second.service.rest.controller;
 
-import com.kpi.project.first.service.entity.User;
-import com.kpi.project.first.service.service.AccountService;
-import com.kpi.project.first.service.service.vm.LoginVM;
-import com.kpi.project.first.service.service.vm.RecoveryPasswordVM;
-import com.kpi.project.first.service.service.vm.UserAndTokenVM;
+import com.kpi.project.second.service.entity.User;
+import com.kpi.project.second.service.service.AccountService;
+import com.kpi.project.second.service.service.vm.LoginVM;
+import com.kpi.project.second.service.service.vm.RecoveryPasswordVM;
+import com.kpi.project.second.service.service.vm.UserAndTokenVM;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

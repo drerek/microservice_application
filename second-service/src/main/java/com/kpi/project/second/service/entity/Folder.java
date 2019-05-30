@@ -1,4 +1,4 @@
-package com.kpi.project.first.service.entity;
+package com.kpi.project.second.service.entity;
 
 
 import lombok.Data;
@@ -17,5 +17,5 @@ public class Folder {
     private String name;
     private int userId;
 
-    private List<Object> events;
+    private List<Event> events;
 }

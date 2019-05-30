@@ -1,25 +1,23 @@
-package com.kpi.project.first.service.dao.impl;
+package com.kpi.project.second.service.dao.impl;
 
-import com.kpi.project.first.service.dao.AbstractDao;
-import com.kpi.project.first.service.dao.UserDao;
-import com.kpi.project.first.service.dao.rowMappers.UserRowMapper;
-import com.kpi.project.first.service.entity.Folder;
-import com.kpi.project.first.service.entity.User;
-import com.kpi.project.first.service.exception.runtime.DatabaseWorkException;
-import com.kpi.project.first.service.exception.runtime.DeleteException;
-import com.kpi.project.first.service.exception.runtime.EntityNotFoundException;
-import com.kpi.project.first.service.exception.runtime.UpdateException;
-import com.kpi.project.first.service.exception.runtime.frontend.detailed.RequestAlreadySentException;
+import com.kpi.project.second.service.dao.AbstractDao;
+import com.kpi.project.second.service.dao.UserDao;
+import com.kpi.project.second.service.dao.rowMappers.UserRowMapper;
+import com.kpi.project.second.service.entity.Folder;
+import com.kpi.project.second.service.entity.User;
+import com.kpi.project.second.service.exception.runtime.DatabaseWorkException;
+import com.kpi.project.second.service.exception.runtime.DeleteException;
+import com.kpi.project.second.service.exception.runtime.EntityNotFoundException;
+import com.kpi.project.second.service.exception.runtime.UpdateException;
+import com.kpi.project.second.service.exception.runtime.frontend.detailed.RequestAlreadySentException;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
-import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.client.RestTemplate;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -27,13 +25,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.kpi.project.first.service.keys.Key.*;
+import static com.kpi.project.second.service.keys.Key.*;
 
 
 @Repository
 @PropertySource("classpath:sqlDao.properties")
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
+
+    @Autowired
+    private FolderDaoImpl folderDao;
 
     @Autowired
     private UserRowMapper userRowMapper;
@@ -292,10 +293,9 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
         log.debug("Try to insert general folder by folderDao");
 
-        String url = "http://localhost:8100/api/users/"+id+"/folders";
-        ResponseEntity<Folder> responseEntity = new RestTemplate().postForEntity(url, folder, Folder.class);
+        int generalFolderId = folderDao.insert(folder).getFolderId();
 
-        log.debug("Creating folder end with status:{}", responseEntity.getStatusCode());
+        log.debug("General folder was inserted with id '{}'", generalFolderId);
 
         return model;
     }
