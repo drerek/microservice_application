@@ -26,9 +26,23 @@ public class FolderController {
     @PreAuthorize("@folderAuthorization.isUserCorrect(#userId)")
     public ResponseEntity<List<Folder>> getAllFolders(@PathVariable Integer userId) {
         log.debug("Trying to get all user folders");
+        List<Folder> folders;
+        try {
+            folders = folderService.getUserFolders(userId);
+        }
+        catch (Exception e){
+                Folder folder = new Folder();
+                folder.setName("general");
+                folder.setUserId(userId);
 
-        List<Folder> folders = folderService.getUserFolders(userId);
+                log.debug("Try to insert general folder by folderDao");
 
+                int generalFolderId = folderService.addFolder(folder).getFolderId();
+
+                log.debug("General folder was inserted with id '{}'", generalFolderId);
+                folders = folderService.getUserFolders(userId);
+
+        }
         log.debug("Send response body folders '{}' and status OK", folders.toString());
 
         return new ResponseEntity<>(folders, HttpStatus.OK);
@@ -45,6 +59,8 @@ public class FolderController {
 
         return new ResponseEntity<>(folder, HttpStatus.OK);
     }
+
+
 
     @PostMapping
     @PreAuthorize("@folderAuthorization.isFolderCorrect(#userId, #folder)")

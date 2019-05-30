@@ -2,6 +2,7 @@ package com.kpi.project.first.service.entity;
 
 
 import lombok.Data;
+import org.springframework.util.MultiValueMap;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;

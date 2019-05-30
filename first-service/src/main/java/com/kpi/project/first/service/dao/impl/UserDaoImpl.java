@@ -10,12 +10,16 @@ import com.kpi.project.first.service.exception.runtime.DeleteException;
 import com.kpi.project.first.service.exception.runtime.EntityNotFoundException;
 import com.kpi.project.first.service.exception.runtime.UpdateException;
 import com.kpi.project.first.service.exception.runtime.frontend.detailed.RequestAlreadySentException;
+import com.kpi.project.first.service.service.JwtService;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
@@ -34,12 +38,14 @@ import static com.kpi.project.first.service.keys.Key.*;
 @PropertySource("classpath:sqlDao.properties")
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
+    private final UserRowMapper userRowMapper;
 
-    @Autowired
-    private UserRowMapper userRowMapper;
+    private JwtService jwtService;
 
-    public UserDaoImpl() {
+    public UserDaoImpl(UserRowMapper userRowMapper,@Lazy JwtService jwtService) {
+        this.jwtService = jwtService;
         log = LoggerFactory.getLogger(UserDaoImpl.class);
+        this.userRowMapper = userRowMapper;
     }
 
     /**
@@ -280,22 +286,12 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
         try {
             log.debug("Try to execute statement");
             id = simpleJdbcInsert.executeAndReturnKey(parameters).intValue();
+            log.debug("Excecution done, user_id="+id);
             model.setId(id);
         } catch (DataAccessException e) {
             log.error("Query fails by insert User",e);
             throw new DatabaseWorkException(env.getProperty(EXCEPTION_DATABASE_WORK));
         }
-
-        Folder folder = new Folder();
-        folder.setName("general");
-        folder.setUserId(id);
-
-        log.debug("Try to insert general folder by folderDao");
-
-        String url = "http://localhost:8100/api/users/"+id+"/folders";
-        ResponseEntity<Folder> responseEntity = new RestTemplate().postForEntity(url, folder, Folder.class);
-
-        log.debug("Creating folder end with status:{}", responseEntity.getStatusCode());
 
         return model;
     }
