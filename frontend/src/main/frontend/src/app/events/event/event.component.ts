@@ -5,7 +5,6 @@ import {Evento} from "../event";
 import {ToastrService} from "ngx-toastr";
 import {NgxSpinnerService} from "ngx-spinner";
 import {AppComponent} from "../../app.component";
-import {ChatService} from "../../chat/chat.service";
 import {FriendService} from "../../account/friends/friend.service";
 import {FormControl} from "@angular/forms";
 import {AccountService} from "../../account/account.service";
@@ -54,7 +53,6 @@ export class EventComponent implements OnInit {
               private spinner: NgxSpinnerService,
               private router: Router,
               private appComponent: AppComponent,
-              private chatService: ChatService,
               private accountService: AccountService) {
   }
 
@@ -98,9 +96,6 @@ export class EventComponent implements OnInit {
       this.lng = +coordinates[1];
       this.tempType = eventt.eventType;
       this.isParticipantt();
-      if (eventt.eventType === 'EVENT') {
-        this.getChatIds(eventt);
-      }
       this.accountService.getLoginById(eventt.ownerId).subscribe(
         login => {
           this.ownerLogin = login;
@@ -135,17 +130,6 @@ export class EventComponent implements OnInit {
     } else {
       this.eventt.participants = [];
     }
-  }
-
-  getChatIds(eventt: Evento) {
-    this.chatService.getChatIds(eventt.eventId).subscribe(
-      chat=> {
-        this.eventt.privateChatId = chat.privateChatId;
-        this.eventt.publicChatId = chat.publicChatId;
-      }, error => {
-        this.showError('Problem with chats loading','Attention!');
-      }
-    );
   }
 
   showError(message: string, title: string) {
@@ -376,17 +360,6 @@ export class EventComponent implements OnInit {
     this.router.navigate(["/" + this.currentUserLogin + "/folders/" + this.folderId + "/" +
     this.type + "/" + this.eventId + "/edit"]);
   }
-
-  onPublicChat() {
-    this.router.navigate(["/" + this.currentUserLogin + "/folders/" + this.folderId + "/event/" + this.eventId +
-    "/chat/" + this.eventt.publicChatId]);
-  }
-
-  onPrivateChat() {
-    this.router.navigate(["/" + this.currentUserLogin + "/folders/" + this.folderId + "/event/" + this.eventId +
-    "/chat/" + this.eventt.privateChatId]);
-  }
-
 
   goToProfile(member: string) {
     this.router.navigate(["/" + member + "/profile"]);

@@ -1,6 +1,5 @@
 package com.kpi.project.second.service.service;
 
-import com.kpi.project.second.service.dao.ChatDao;
 import com.kpi.project.second.service.dao.EventDao;
 import com.kpi.project.second.service.dao.UserDao;
 import com.kpi.project.second.service.entity.*;
@@ -33,15 +32,13 @@ public class EventService {
     protected Environment env;
 
     private final PdfCreateService pdfCreateService;
-    private final ChatDao chatDao;
     private final EventDao eventDao;
     private final UserDao userDao;
     private final AuthenticationFacade authenticationFacade;
     private final MailService mailService;
 
     @Autowired
-    public EventService(EventDao eventDao, UserDao userDao, MailService mailService, AuthenticationFacade authenticationFacade, PdfCreateService pdfCreateService, ChatDao chatDao) {
-        this.chatDao = chatDao;
+    public EventService(EventDao eventDao, UserDao userDao, MailService mailService, AuthenticationFacade authenticationFacade, PdfCreateService pdfCreateService) {
         this.eventDao = eventDao;
         this.userDao = userDao;
         this.mailService = mailService;
@@ -176,10 +173,6 @@ public class EventService {
         log.debug("Trying to delete members with eventId '{}' from database", eventId);
 
         event = eventDao.deleteMembers(event);
-
-        log.debug("Trying to delete chats with eventId '{}' from database", eventId);
-
-        chatDao.deleteChatsByEventId(eventId);
 
         log.debug("Try to unpin event with id : '{}', for all users", eventDao.unpinAllOnDelete(eventId));
 

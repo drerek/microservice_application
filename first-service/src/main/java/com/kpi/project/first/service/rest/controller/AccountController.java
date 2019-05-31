@@ -83,26 +83,4 @@ public class AccountController {
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-    @PostMapping("/auth/check/password")
-    public ResponseEntity passwordCheck(@Valid @RequestBody RecoveryPasswordVM model) {
-        log.debug("Trying to check password by token '{}'", model.getToken());
-
-        accountService.checkPassword(model);
-
-        log.debug("Send response status OK");
-
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
-    @PostMapping("/auth/change/password")
-    public ResponseEntity passwordChange(@Valid @RequestBody RecoveryPasswordVM model) {
-        log.debug("Trying to change password by token '{}'", model.getToken());
-
-        accountService.changePassword(model);
-
-        log.debug("Send response status OK");
-
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 }

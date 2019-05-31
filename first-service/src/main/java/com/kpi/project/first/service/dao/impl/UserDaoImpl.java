@@ -3,7 +3,6 @@ package com.kpi.project.first.service.dao.impl;
 import com.kpi.project.first.service.dao.AbstractDao;
 import com.kpi.project.first.service.dao.UserDao;
 import com.kpi.project.first.service.dao.rowMappers.UserRowMapper;
-import com.kpi.project.first.service.entity.Folder;
 import com.kpi.project.first.service.entity.User;
 import com.kpi.project.first.service.exception.runtime.DatabaseWorkException;
 import com.kpi.project.first.service.exception.runtime.DeleteException;

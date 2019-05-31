@@ -27,14 +27,13 @@ public class AuthenticationFacade {
 
     public User getAuthentication() {
         log.debug("Trying to get authentication from SecurityContextHolder");
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication == null || !authentication.isAuthenticated()) {
             log.error("User is not authenticated");
             throw new AuthenticationException(env.getProperty(EXCEPTION_AUTHENTICATION));
         }
-
+        
         User authenticatedUser = (User) authentication.getPrincipal();
 
         log.debug("Found authenticated user '{}'", authenticatedUser);

@@ -31,6 +31,7 @@ public class JwtService {
     private final static String JWT_ISSUER = "jwt.issuer";
     private final static String JWT_LOGIN = "jwt.login";
     private final static String JWT_EMAIL = "jwt.email";
+    private final static String JWT_ID = "jwt.id";
 
     @Autowired
     private Environment env;
@@ -74,54 +75,4 @@ public class JwtService {
         return userDao.findByEmail(email);
     }
 
-    public String tokenFor(User user) {
-        log.debug("Trying to get secret key form SecretKeyProvider");
-
-        byte[] secretKey = secretKeyProvider.getKey();
-
-        log.debug("Trying to build a token for user '{}'", user);
-
-        Date expiration = Date.from(LocalDateTime.now(UTC).plusDays(365).toInstant(UTC));
-        return Jwts.builder()
-                .setSubject(env.getProperty(JWT_SUBJECT))
-                .setExpiration(expiration)
-                .setIssuer(env.getProperty(JWT_ISSUER))
-                .claim(env.getProperty(JWT_LOGIN), user.getLogin())
-                .signWith(SignatureAlgorithm.HS512, secretKey)
-                .compact();
-    }
-
-    public String tokenForConfirmationRegistration(User user) {
-        log.debug("Trying to get secret key form SecretKeyProvider");
-
-        byte[] secretKey = secretKeyProvider.getKey();
-
-        log.debug("Trying to build a token for user '{}'", user);
-
-        Date expiration = Date.from(LocalDateTime.now(UTC).plusDays(1).toInstant(UTC));
-        return Jwts.builder()
-                .setSubject(env.getProperty(JWT_SUBJECT))
-                .setExpiration(expiration)
-                .setIssuer(env.getProperty(JWT_ISSUER))
-                .claim(env.getProperty(JWT_EMAIL), user.getEmail())
-                .signWith(SignatureAlgorithm.HS512, secretKey)
-                .compact();
-    }
-
-    public String tokenForRecoveryPassword(User user) {
-        log.debug("Trying to get secret key form SecretKeyProvider");
-
-        byte[] secretKey = secretKeyProvider.getKey();
-
-        log.debug("Trying to build a token for user '{}'", user);
-
-        Date expiration = Date.from(LocalDateTime.now(UTC).plusMinutes(15).toInstant(UTC));
-        return Jwts.builder()
-                .setSubject(env.getProperty(JWT_SUBJECT))
-                .setExpiration(expiration)
-                .setIssuer(env.getProperty(JWT_ISSUER))
-                .claim(env.getProperty(JWT_EMAIL), user.getEmail())
-                .signWith(SignatureAlgorithm.HS512, secretKey)
-                .compact();
-    }
 }

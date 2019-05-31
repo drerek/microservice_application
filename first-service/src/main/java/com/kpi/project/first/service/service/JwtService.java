@@ -31,6 +31,7 @@ public class JwtService {
     private final static String JWT_ISSUER = "jwt.issuer";
     private final static String JWT_LOGIN = "jwt.login";
     private final static String JWT_EMAIL = "jwt.email";
+    private final static String JWT_ID = "jwt.id";
 
     @Autowired
     private Environment env;
@@ -87,6 +88,7 @@ public class JwtService {
                 .setExpiration(expiration)
                 .setIssuer(env.getProperty(JWT_ISSUER))
                 .claim(env.getProperty(JWT_LOGIN), user.getLogin())
+                .claim(env.getProperty(JWT_ID), user.getId())
                 .signWith(SignatureAlgorithm.HS512, secretKey)
                 .compact();
     }

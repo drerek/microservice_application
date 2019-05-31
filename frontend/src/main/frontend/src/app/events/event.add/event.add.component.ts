@@ -7,7 +7,6 @@ import {ImageUploadService} from "../image.upload.service";
 import {FormControl} from "@angular/forms";
 import {MapsAPILoader} from "@agm/core";
 import {} from '@types/googlemaps';
-import {ChatService} from "../../chat/chat.service";
 import {AppComponent} from "../../app.component";
 import {EventService} from "../event.service";
 
@@ -47,8 +46,7 @@ export class EventAddComponent implements OnInit {
               private mapsAPILoader: MapsAPILoader,
               private eventService: EventService,
               private ngZone: NgZone,
-              private router: Router,
-              private chatService: ChatService) { }
+              private router: Router) { }
 
   ngOnInit() {
     this.spinner.show();
@@ -150,7 +148,6 @@ export class EventAddComponent implements OnInit {
       this.showSuccess();
 
       if (eventt.eventType === 'EVENT') {
-        this.addChat(eventt);
       } else {
         this.spinner.hide();
         this.redirectToEvent(eventt);
@@ -161,19 +158,6 @@ export class EventAddComponent implements OnInit {
       this.appComponent.showError('Unsuccessful event adding', 'Adding error');
       this.spinner.hide();
     });
-  }
-
-  addChat(eventt: Evento) {
-    this.chatService.addChat(eventt.eventId).subscribe(
-      chat => {
-        this.spinner.hide();
-        this.redirectToEvent(eventt);
-      }, error => {
-        this.spinner.hide();
-        this.appComponent.showError("Can not create chat", 'Adding error');
-        this.redirectToEvent(eventt);
-      }
-    )
   }
 
   redirectToEvent(eventt: Evento) {

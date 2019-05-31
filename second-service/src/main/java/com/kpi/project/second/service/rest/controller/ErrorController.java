@@ -2,7 +2,7 @@ package com.kpi.project.second.service.rest.controller;
 
 import com.kpi.project.second.service.exception.runtime.CustomRuntimeException;
 import com.kpi.project.second.service.exception.runtime.frontend.detailed.FrontendDetailedException;
-import com.kpi.project.second.service.service.AccountService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -1,6 +1,5 @@
 package com.kpi.project.second.service.service.mail;
 
-import com.kpi.project.second.service.service.AccountService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.PropertySource;

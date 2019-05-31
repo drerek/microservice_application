@@ -25,7 +25,6 @@ import {EditComponent} from "./account/edit/edit.component";
 import {FriendComponent} from "./account/friends/friend/friend.component";
 import {FriendsListComponent} from "./account/friends/friends.list.component";
 import {FriendService} from "./account/friends/friend.service";
-import {ChangePasswordComponent} from "./account/change.password/changePassword.component";
 import {UploadFileService} from "./upload.file/upload.file.service";
 import {ToastrModule} from "ngx-toastr";
 import {ThankyouComponent} from "./account/thankyou/thankyou.component";
@@ -44,10 +43,7 @@ import {ImageUploadService} from "./events/image.upload.service";
 import {AgmCoreModule} from "@agm/core";
 import {environment} from "./environment";
 import { TextMaskModule } from 'angular2-text-mask';
-import {CheckPasswordComponent} from "./account/change.password/check.password/checkPassword.component"
 import {EventEditComponent} from "./events/event.edit/event.edit.component";
-import { ChatComponent } from './chat/chat/chat.component';
-import {ChatService} from "./chat/chat.service";
 import { WishListComponent } from './wishes/wish.list/wish.list.component';
 import { WishComponent } from './wishes/wish/wish.component';
 import {WishListService} from "./wishes/wish.list.service";
@@ -75,18 +71,15 @@ import {ConfirmationComponent} from "./account/confirmation/confirmation.compone
     EditComponent,
     FriendsListComponent,
     FriendComponent,
-    ChangePasswordComponent,
     ThankyouComponent,
     EventListComponent,
     EventAddComponent,
     CalendarComponent,
     EventEditComponent,
-    ChatComponent,
     WishListComponent,
     WishComponent,
     WishAddComponent,
     EventEditComponent,
-    CheckPasswordComponent,
     WishEditComponent,
     CountDown,
     CommentListComponent,
@@ -124,7 +117,6 @@ import {ConfirmationComponent} from "./account/confirmation/confirmation.compone
     UploadFileService,
     CalendarService,
     ImageUploadService,
-    ChatService,
     WishListService,
     WishService,
     CommentService

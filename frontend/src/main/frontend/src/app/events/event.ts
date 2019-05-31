@@ -16,8 +16,6 @@ export class Evento{
   isPinned: boolean;
   ownerId : number;
   participants : Profile[]
-  privateChatId: number;
-  publicChatId: number;
 
   clone() : Evento {
     let itemClone = new Evento();

@@ -70,20 +70,6 @@ export class AccountService {
     return this.http.put('api/profile/', account, {headers: headers});
   }
 
-  checkPassword(account:any):Observable<any>{
-    let headers = new HttpHeaders()
-      .set("Authorization", `Bearer ${JSON.parse(localStorage.currentUser).token}`);
-
-    return this.http.post('api/check/password/', account, {headers: headers});
-  }
-
-  changePassword(account:any):Observable<any>{
-    let headers = new HttpHeaders()
-      .set("Authorization", `Bearer ${JSON.parse(localStorage.currentUser).token}`);
-
-    return this.http.post('api/change/password/', account, {headers: headers});
-  }
-
   getLoginById(id:any):Observable<any>{
     let headers = new HttpHeaders()
       .set("Authorization", `Bearer ${JSON.parse(localStorage.currentUser).token}`);
