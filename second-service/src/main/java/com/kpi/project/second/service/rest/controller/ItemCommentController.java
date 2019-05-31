@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/comment")
+@RequestMapping(path = "/second/comment")
 public class ItemCommentController {
     private static Logger log = LoggerFactory.getLogger(ItemCommentController.class);
 

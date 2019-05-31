@@ -12,7 +12,7 @@ export class CommentService {
     let headers = new HttpHeaders()
       .set("Authorization", `Bearer ${JSON.parse(localStorage.currentUser).token}`);
 
-    return this.http.post<any>('api/comment/'+idItem, comment, {headers:headers}).map(comment => {
+    return this.http.post<any>('second/comment/'+idItem, comment, {headers:headers}).map(comment => {
       return comment;
     });
   }
@@ -21,7 +21,7 @@ export class CommentService {
     let headers = new HttpHeaders()
       .set("Authorization", `Bearer ${JSON.parse(localStorage.currentUser).token}`);
 
-    return this.http.get<any>('api/comment/'+idItem+'/comments', {headers:headers})
+    return this.http.get<any>('second/comment/'+idItem+'/comments', {headers:headers})
       .map(comments => {
         return comments;
       })
@@ -31,7 +31,7 @@ export class CommentService {
     let headers = new HttpHeaders()
       .set("Authorization", `Bearer ${JSON.parse(localStorage.currentUser).token}`);
 
-    return this.http.delete<any>('api/comment/'+idComment, {headers:headers})
+    return this.http.delete<any>('second/comment/'+idComment, {headers:headers})
       .map(comment => {
         return comment;
       })

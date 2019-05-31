@@ -233,6 +233,7 @@ public final class Key {
     //Security url patterns
     public static final String URL_AUTH_PATTERN="auth.all";
     public static final String URL_API_PATTERN="api.all";
+    public static final String URL_API2_PATTERN="api2.all";
 
     private Key(){}
 

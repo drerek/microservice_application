@@ -10,7 +10,7 @@
   <a class="list-group-item list-group-item-action" [ngClass]="{'active': states === 'profile'}"
      href="#/{{profile.login}}/profile">Profile</a>
   <a class="list-group-item list-group-item-action" [ngClass]="{'active': states === 'friends'}"
-     href="#/{{profile.login}}/friends/">Friends<span *ngIf="friendRequests>0" class="badge badge-pill badge-info">{{friendRequests}}</span></a>
+     href="#/{{profile.login}}/friends/">Friends</a>
   <a class="list-group-item list-group-item-action" [ngClass]="{'active': states === 'folders'}"
      href="#/{{profile.login}}/folders/">Folders</a>
   <a class="list-group-item list-group-item-action" [ngClass]="{'active': states === 'calendar'}"

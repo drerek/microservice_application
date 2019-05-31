@@ -13,7 +13,6 @@ import {FriendService} from "../friends/friend.service";
 export class HomeComponent{
   @Input() states: string;
   profile: Profile;
-  friendRequests: number;
 
   constructor(private accountService: AccountService,
               private router: Router,
@@ -23,7 +22,6 @@ export class HomeComponent{
 
   ngOnInit() {
     this.profile = JSON.parse(localStorage.getItem('currentUser'));
-    this.updateRequests();
   }
 
   logout() {
@@ -31,7 +29,4 @@ export class HomeComponent{
     this.router.navigate(["/login"]);
   }
 
-  updateRequests() {
-    this.friendService.getFriendsRequests().subscribe(requests => this.friendRequests = requests.length);
-  }
 }

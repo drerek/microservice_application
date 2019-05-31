@@ -1,7 +1,6 @@
 package com.kpi.project.second.service.service;
 
 import com.kpi.project.second.service.dao.UserDao;
-import com.kpi.project.second.service.entity.Event;
 import com.kpi.project.second.service.entity.User;
 import com.kpi.project.second.service.exception.runtime.EntityNotFoundException;
 import org.slf4j.Logger;
@@ -22,12 +21,10 @@ public class ProfileService {
     private static Logger log = LoggerFactory.getLogger(ProfileService.class);
 
     private final UserDao userDao;
-    private final EventService eventService;
 
     @Autowired
-    public ProfileService(UserDao userDao, EventService eventService) {
+    public ProfileService(UserDao userDao) {
         this.userDao = userDao;
-        this.eventService = eventService;
     }
 
     @Autowired
@@ -139,28 +136,4 @@ public class ProfileService {
         }
     }
 
-    public User getProfileWithEvent(String login) {
-        log.debug("Trying to get user by login '{}'", login);
-
-        User user = getUserByLogin(login);
-
-        Event event = null;
-
-        log.debug("Trying to get event by id '{}'", user.getPinedEventId());
-
-        if (user.getPinedEventId() != 0) {
-            event = eventService.getEvent(user.getPinedEventId());
-        } else {
-            log.debug("There is no pined event");
-        }
-
-        log.debug("setting user and event info to response entity");
-
-        if (event != null) {
-            user.setPinedEventDate(event.getEventDate());
-            user.setPinedEventName(event.getName());
-        }
-
-        return user;
-    }
 }

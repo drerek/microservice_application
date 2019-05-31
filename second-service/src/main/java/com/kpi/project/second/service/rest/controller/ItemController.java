@@ -18,7 +18,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/users/{userId}/items")
+@RequestMapping(path = "/second/users/{userId}/items")
 public class ItemController {
 
     private static Logger log = LoggerFactory.getLogger(ItemController.class);

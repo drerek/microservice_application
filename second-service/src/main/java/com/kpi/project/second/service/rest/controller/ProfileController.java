@@ -1,8 +1,6 @@
 package com.kpi.project.second.service.rest.controller;
 
-import com.kpi.project.second.service.entity.Event;
 import com.kpi.project.second.service.entity.User;
-import com.kpi.project.second.service.service.EventService;
 import com.kpi.project.second.service.service.ProfileService;
 import com.kpi.project.second.service.service.StorageService;
 import org.slf4j.Logger;
@@ -17,20 +15,18 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/profile")
+@RequestMapping(path = "/second/profile")
 public class ProfileController {
 
     private static Logger log = LoggerFactory.getLogger(ProfileController.class);
 
     private final ProfileService profileService;
     private final StorageService storageService;
-    private final EventService eventService;
 
     @Autowired
-    public ProfileController(ProfileService profileService, StorageService storageService, EventService eventService) {
+    public ProfileController(ProfileService profileService, StorageService storageService) {
         this.profileService = profileService;
         this.storageService = storageService;
-        this.eventService = eventService;
     }
 
     @GetMapping("/{login}")
@@ -166,14 +162,4 @@ public class ProfileController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @GetMapping("/{login}/event/pined")
-    public ResponseEntity<User> getProfileWithEvent(@PathVariable String login){
-        log.debug("Trying to get user with event by login '{}'", login);
-
-        User user = profileService.getProfileWithEvent(login);
-
-        log.debug("Received user '{}' and send response status OK", user);
-
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
 }

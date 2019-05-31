@@ -38,8 +38,6 @@ export class ProfileComponent implements OnInit {
       this.accountService.profileWithEvent(params['login']).subscribe(
         (profile) => {
           this.profile = profile;
-          this.eventName = this.profile.pinedEventName;
-          this.eventDate = this.profile.pinedEventDate;
           this.loggedUser = JSON.parse(localStorage.getItem('currentUser')).login === this.profile.login;
           this.update();
           this.spinner.hide();

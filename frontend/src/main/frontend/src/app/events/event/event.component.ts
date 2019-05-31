@@ -36,7 +36,6 @@ export class EventComponent implements OnInit {
   shouldShow: boolean;
   hasParticipant: boolean;
   type: string;
-  isPinned:boolean;
   isParticipant: boolean;
   deleteParticipantQueryField: FormControl = new FormControl();
   addParticipantQueryField: FormControl = new FormControl();
@@ -68,8 +67,6 @@ export class EventComponent implements OnInit {
       this.time = "00:00";
       this.shouldShow = false;
       this.datee = this.currentDate;
-
-      this.isPinned = (this.eventId === JSON.parse(localStorage.getItem('currentUser')).pinedEventId)
     }, error => {
       this.appComponent.showError('Unsuccessful event loading', 'Loading error');
     });
@@ -148,41 +145,6 @@ export class EventComponent implements OnInit {
     });
   }
 
-  pinEvent() {
-    this.spinner.show();
-    this.eventService.pinEvent(this.currentUserId, this.eventId).subscribe(
-      (event: Evento) => {
-        this.isPinned = !this.isPinned;
-        let profile = JSON.parse(localStorage.currentUser);
-        profile.pinedEventId = this.eventId;
-        localStorage.setItem('currentUser', JSON.stringify(profile));
-        this.showSuccess('Event is successfully pinned', 'Success!');
-        this.spinner.hide();
-      },
-      error => {
-        this.appComponent.showError('Can not pin event', 'Attention!');
-        this.spinner.hide();
-      }
-    );
-  }
-
-  unpinEvent() {
-    this.spinner.show();
-    this.eventService.unpinEvent(this.currentUserId, this.eventId).subscribe(
-      (event: Evento) => {
-        this.isPinned = !this.isPinned;
-        let profile = JSON.parse(localStorage.currentUser);
-        profile.pinedEventId = 0;
-        localStorage.setItem('currentUser', JSON.stringify(profile));
-        this.showSuccess('Event is successfully unpinned', 'Success!');
-        this.spinner.hide();
-      },
-      error => {
-        this.appComponent.showError('Can not unpin event', 'Attention!');
-        this.spinner.hide();
-      }
-    );
-  }
 
   addParticipant(name) {
     this.spinner.show();

@@ -14,7 +14,7 @@ export class EventService {
 
   initPrePath() {
     this.currentUser = JSON.parse(localStorage.currentUser);
-    this.prePath = `api/users/${this.currentUser.id}`;
+    this.prePath = `third/users/${this.currentUser.id}`;
   }
 
   getEvent(eventId: number): Observable<Evento> {
@@ -115,27 +115,8 @@ export class EventService {
     let headers = new HttpHeaders()
       .set("Authorization", `Bearer ${this.currentUser.token}`);
 
-    return this.http.get(`api/users/${userId}/events/public`,
+    return this.http.get(`third/users/${userId}/events/public`,
       {headers: headers, params: {'name': queryField}});
-  }
-
-  pinEvent(userId: number, eventId: number): Observable<any> {
-    this.initPrePath();
-
-    let headers = new HttpHeaders()
-      .set("Authorization", `Bearer ${this.currentUser.token}`);
-
-    return this.http.get(`${this.prePath}/events/${eventId}/pinned`, {headers: headers});
-  }
-
-  unpinEvent(userId: number, eventId: number): Observable<any> {
-    this.initPrePath();
-
-    let headers = new HttpHeaders()
-      .set("Authorization", `Bearer ${this.currentUser.token}`);
-
-    return this.http.delete(`${this.prePath}/events/${eventId}/pinned`,
-      {headers: headers});
   }
 
   uploadEventsPlan(data: any): Observable<any> {

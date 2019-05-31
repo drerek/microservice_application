@@ -13,9 +13,8 @@ export class Evento{
   isDraft : boolean;
   folderId : number;
   imageFilepath : string;
-  isPinned: boolean;
   ownerId : number;
-  participants : Profile[]
+  participants : Profile[];
 
   clone() : Evento {
     let itemClone = new Evento();
@@ -31,7 +30,6 @@ export class Evento{
     itemClone.folderId = this.folderId;
     itemClone.ownerId = this.ownerId;
     itemClone.imageFilepath = this.imageFilepath;
-    itemClone.isPinned = this.isPinned;
     itemClone.imageFilepath = this.imageFilepath;
     itemClone.participants = this.participants;
 

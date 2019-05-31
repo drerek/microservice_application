@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users/{userId}/wishes")
+@RequestMapping("/second/users/{userId}/wishes")
 public class WishListController {
 
     private static Logger log = LoggerFactory.getLogger(WishListController.class);

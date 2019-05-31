@@ -3,7 +3,6 @@ package com.kpi.project.second.service.dao.impl;
 import com.kpi.project.second.service.dao.AbstractDao;
 import com.kpi.project.second.service.dao.UserDao;
 import com.kpi.project.second.service.dao.rowMappers.UserRowMapper;
-import com.kpi.project.second.service.entity.Folder;
 import com.kpi.project.second.service.entity.User;
 import com.kpi.project.second.service.exception.runtime.DatabaseWorkException;
 import com.kpi.project.second.service.exception.runtime.DeleteException;
@@ -31,10 +30,6 @@ import static com.kpi.project.second.service.keys.Key.*;
 @Repository
 @PropertySource("classpath:sqlDao.properties")
 public class UserDaoImpl extends AbstractDao<User> implements UserDao {
-
-
-    @Autowired
-    private FolderDaoImpl folderDao;
 
     @Autowired
     private UserRowMapper userRowMapper;
@@ -256,48 +251,7 @@ public class UserDaoImpl extends AbstractDao<User> implements UserDao {
 
     @Override
     public User insert(User model) {
-        log.debug("Try to insert user with login '{}'", model.getLogin());
-
-        int id;
-
-        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate.getDataSource())
-                .withTableName(TABLE_UUSER)
-                .usingGeneratedKeyColumns(UUSER_USER_ID);
-
-
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put(UUSER_USER_ID, model.getId());
-        parameters.put(UUSER_LOGIN, model.getLogin());
-        parameters.put(UUSER_PASSWORD, model.getPassword());
-        parameters.put(UUSER_NAME, model.getName());
-        parameters.put(UUSER_SURNAME, model.getLastname());
-        parameters.put(UUSER_EMAIL, model.getEmail());
-        parameters.put(UUSER_TIMEZONE, model.getTimeZone());
-        parameters.put(UUSER_IMAGE_FILEPATH, model.getImgPath());
-        parameters.put(UUSER_BDAY, (model.getBirthDay() != null ? Date.valueOf(model.getBirthDay()) : null));
-        parameters.put(UUSER_PHONE, model.getPhone());
-        parameters.put(UUSER_REGISTER_DATE, model.getRegisterDate());
-
-        try {
-            log.debug("Try to execute statement");
-            id = simpleJdbcInsert.executeAndReturnKey(parameters).intValue();
-            model.setId(id);
-        } catch (DataAccessException e) {
-            log.error("Query fails by insert User",e);
-            throw new DatabaseWorkException(env.getProperty(EXCEPTION_DATABASE_WORK));
-        }
-
-        Folder folder = new Folder();
-        folder.setName("general");
-        folder.setUserId(id);
-
-        log.debug("Try to insert general folder by folderDao");
-
-        int generalFolderId = folderDao.insert(folder).getFolderId();
-
-        log.debug("General folder was inserted with id '{}'", generalFolderId);
-
-        return model;
+        return new User();
     }
 
     @Override

@@ -15,7 +15,7 @@ export class ImageUploadService {
 
     formdata.append('file', file);
 
-    return this.http.post('/api/users/' + userId + '/events/upload', formdata, {headers: headers});
+    return this.http.post('/third/users/' + userId + '/events/upload', formdata, {headers: headers});
   }
 
 }

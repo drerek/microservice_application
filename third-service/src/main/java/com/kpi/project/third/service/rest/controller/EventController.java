@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/users/{userId}/events")
+@RequestMapping(path = "/third/users/{userId}/events")
 public class EventController {
 
     private static Logger log = LoggerFactory.getLogger(EventController.class);

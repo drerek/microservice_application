@@ -24,6 +24,8 @@ import java.util.Collections;
 
 import static com.kpi.project.second.service.keys.Key.URL_API_PATTERN;
 import static com.kpi.project.second.service.keys.Key.URL_AUTH_PATTERN;
+import static com.kpi.project.second.service.keys.Key.URL_API2_PATTERN;
+
 
 @Configuration
 @EnableWebSecurity
@@ -64,5 +66,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(env.getProperty(URL_AUTH_PATTERN)).permitAll()
                 .antMatchers(env.getProperty(URL_API_PATTERN)).authenticated();
+//                .antMatchers(env.getProperty(URL_API2_PATTERN)).authenticated();
     }
 }

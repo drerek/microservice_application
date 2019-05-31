@@ -21,7 +21,7 @@ export class AccountService {
   }
 
   upImg(img:any):Observable<any>{
-    return this.http.post('api/profile/img', img);
+    return this.http.post('second/profile/img', img);
   }
 
   //login
@@ -52,7 +52,7 @@ export class AccountService {
       .set("Authorization", `Bearer ${JSON.parse(localStorage.currentUser).token}`);
 
     return this.http
-      .get('api/profile/' + login, {headers: headers});
+      .get('second/profile/' + login, {headers: headers});
   }
 
   profileWithEvent(login: string):Observable<any>{
@@ -60,21 +60,21 @@ export class AccountService {
       .set("Authorization", `Bearer ${JSON.parse(localStorage.currentUser).token}`);
 
     return this.http
-      .get(`api/profile/${login}/event/pined`, {headers: headers});
+      .get('second/profile/' + login, {headers: headers});
   }
 
   update(account:any):Observable<any>{
     let headers = new HttpHeaders()
       .set("Authorization", `Bearer ${JSON.parse(localStorage.currentUser).token}`);
 
-    return this.http.put('api/profile/', account, {headers: headers});
+    return this.http.put('second/profile/', account, {headers: headers});
   }
 
   getLoginById(id:any):Observable<any>{
     let headers = new HttpHeaders()
       .set("Authorization", `Bearer ${JSON.parse(localStorage.currentUser).token}`);
 
-    return this.http.get('/api/profile/login/'+id, {headers: headers, responseType: 'text'} );
+    return this.http.get('/second/profile/login/'+id, {headers: headers, responseType: 'text'} );
   }
 
 }

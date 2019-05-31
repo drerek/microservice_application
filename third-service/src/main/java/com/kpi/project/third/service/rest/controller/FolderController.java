@@ -14,7 +14,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/users/{userId}/folders")
+@RequestMapping("/third/users/{userId}/folders")
 public class FolderController {
 
     private static Logger log = LoggerFactory.getLogger(FolderController.class);

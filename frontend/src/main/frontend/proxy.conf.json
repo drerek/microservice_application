@@ -1,12 +1,18 @@
 {
-  "/api": {
-    "target": "http://localhost:8000",
+  "/auth": {
+    "target": "http://localhost:8100",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"
   },
-  "/auth": {
-    "target": "http://localhost:8100",
+  "/second": {
+    "target": "http://localhost:8200",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  },
+  "/third": {
+    "target": "http://localhost:8300",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"
