@@ -24,7 +24,7 @@ export class WishComponent implements OnInit {
   item: Item;
   name = "ITEM";
   profile: Profile;
-  idItem: number;
+  idItem: string;
   login: string;
   ownerLogin:string;
   private sub: any;
@@ -50,7 +50,7 @@ export class WishComponent implements OnInit {
   ngOnInit() {
     this.spinner.show();
     this.sub = this.route.params.subscribe(params => {
-      this.idItem = +params['itemId'];
+      this.idItem = params['itemId'];
       this.login = params['login']
     });
 
@@ -59,6 +59,8 @@ export class WishComponent implements OnInit {
     this.profile = JSON.parse(localStorage.getItem('currentUser'));
 
     this.populateComments();
+
+    this.spinner.hide();
 
   }
 
@@ -120,18 +122,10 @@ export class WishComponent implements OnInit {
     })
   }
 
-  getItem(id: number) {
+  getItem(id: string) {
     this.wishService.getWishItem(id, this.login).subscribe(item => {
       this.item = item;
-      this.accountService.getLoginById(this.item.ownerId).subscribe(
-        login => {
-          this.ownerLogin = login;
-          this.spinner.hide();
-        }, error => {
-          this.ownerLogin = null;
-          this.spinner.hide();
-        }
-      )
+      this.ownerLogin = this.item.ownerLogin;
     });
   }
 
@@ -153,7 +147,7 @@ export class WishComponent implements OnInit {
   addToWishList() {
     let newItem = Object.assign({}, this.item);
 
-    newItem.ownerId = this.profile.id;
+    newItem.ownerLogin = this.profile.login;
     newItem.dueDate = this.dueDate + ' 00:00:00';
     newItem.priority = this.priority;
 

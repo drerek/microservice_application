@@ -13,17 +13,17 @@ public class ItemAuthorization extends AbstractAuthorization {
         super(authenticationFacade);
     }
 
-    public boolean isCorrectItem(int userId, Item item) {
+    public boolean isCorrectItem(String userId, Item item) {
 
         if (item == null) {
             return false;
         }
 
-        return userId == item.getOwnerId() && isUserCorrect(userId);
+        return userId.equals(item.getOwnerLogin()) && isUserCorrect(userId);
     }
 
-    public boolean isCorrectItem(int userId, int itemId, Item item) {
-        return isCorrectItem(userId, item) && itemId == item.getItemId();
+    public boolean isCorrectItem(String userId, String itemId, Item item) {
+        return isCorrectItem(userId, item) && itemId.equals(item.getItemId());
     }
 
 }

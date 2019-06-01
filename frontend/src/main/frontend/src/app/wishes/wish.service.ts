@@ -14,10 +14,10 @@ export class WishService {
 
   initPrePath() {
     this.currentUser = JSON.parse(localStorage.currentUser);
-    this.prePath = `second/users/${this.currentUser.id}`;
+    this.prePath = `second/users/${this.currentUser.login}`;
   }
 
-  getWishItem(itemId: number, login: string): Observable<any> {
+  getWishItem(itemId: string, login: string): Observable<any> {
     this.initPrePath();
 
     let headers = new HttpHeaders()
@@ -78,7 +78,7 @@ export class WishService {
     let headers = new HttpHeaders()
       .set("Authorization", `Bearer ${this.currentUser.token}`);
 
-    let url = `${this.prePath}/items/${item.itemId}/owner/${item.ownerId}`;
+    let url = `${this.prePath}/items/${item.itemId}/owner/${item.ownerLogin}`;
 
     return this.http.post(url, item, {headers: headers});
   }
@@ -89,12 +89,12 @@ export class WishService {
     let headers = new HttpHeaders()
       .set("Authorization", `Bearer ${this.currentUser.token}`);
 
-    let url = `${this.prePath}/items/${item.itemId}/owner/${item.ownerId}`;
+    let url = `${this.prePath}/items/${item.itemId}/owner/${item.ownerLogin}`;
 
     return this.http.delete(url, {headers: headers});
   }
 
-  addLike(itemId: number) {
+  addLike(itemId: string) {
     this.initPrePath();
 
     let headers = new HttpHeaders()
@@ -105,7 +105,7 @@ export class WishService {
     return this.http.post(url, {}, {headers: headers})
   }
 
-  removeLike(itemId: number) {
+  removeLike(itemId: string) {
     this.initPrePath();
 
     let headers = new HttpHeaders()
@@ -116,7 +116,7 @@ export class WishService {
     return this.http.delete(url, {headers: headers})
   }
 
-  getLoginsWhoLiked(itemId: number) {
+  getLoginsWhoLiked(itemId: string) {
     this.initPrePath();
 
     let headers = new HttpHeaders()

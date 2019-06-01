@@ -1,8 +1,8 @@
-package com.kpi.project.second.service.service;
+package com.kpi.project.first.service.service;
 
-import com.kpi.project.second.service.dao.UserDao;
-import com.kpi.project.second.service.entity.User;
-import com.kpi.project.second.service.exception.runtime.EntityNotFoundException;
+import com.kpi.project.first.service.dao.UserDao;
+import com.kpi.project.first.service.entity.User;
+import com.kpi.project.first.service.exception.runtime.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.kpi.project.second.service.keys.Key.EXCEPTION_ENTITY_NOT_FOUND;
+import static com.kpi.project.first.service.keys.Key.EXCEPTION_ENTITY_NOT_FOUND;
 
 @Service
 @PropertySource("classpath:strings.properties")

@@ -13,7 +13,7 @@ export class FriendService {
     let headers = new HttpHeaders()
       .set("Authorization", `Bearer ${JSON.parse(localStorage.currentUser).token}`);
 
-    return this.http.get<any>(`second/profile/${login}/friends`, {headers:headers});
+    return this.http.get<any>(`api/profile/${login}/friends`, {headers:headers});
   }
 
   getUsersByUsernamePart(userName: string, type: string = 'unknown'): Observable<any> {
@@ -26,7 +26,7 @@ export class FriendService {
     let headers = new HttpHeaders()
       .set("Authorization", `Bearer ${currentUser.token}`);
 
-    return this.http.get<any>(`second/profile/${currentUser.id}/search`,{headers:headers, params: {'username' : userName, 'type': type}});
+    return this.http.get<any>(`api/profile/${currentUser.id}/search`,{headers:headers, params: {'username' : userName, 'type': type}});
   }
 
   getFriendsRequests(): Observable<any> {
@@ -34,7 +34,7 @@ export class FriendService {
 
     let headers = new HttpHeaders()
       .set("Authorization", `Bearer ${currentUser.token}`);
-    return this.http.get<any>(`second/profile/${currentUser.id}/friends/requests`, {headers:headers});
+    return this.http.get<any>(`api/profile/${currentUser.id}/friends/requests`, {headers:headers});
   }
 
   addFriend(newFriend: string): Observable<any> {
@@ -43,7 +43,7 @@ export class FriendService {
     let headers = new HttpHeaders()
       .set("Authorization", `Bearer ${currentUser.token}`);
 
-    return this.http.post<any>(`second/profile/${currentUser.id}/friends`, newFriend, {headers: headers});
+    return this.http.post<any>(`api/profile/${currentUser.id}/friends`, newFriend, {headers: headers});
   }
 
   confirmFriend(confirmedFriend: number): Observable<any> {
@@ -52,7 +52,7 @@ export class FriendService {
     let headers = new HttpHeaders()
       .set("Authorization", `Bearer ${currentUser.token}`);
 
-    return this.http.post<any>(`second/profile/${currentUser.id}/friends/confirm`, confirmedFriend, {headers: headers});
+    return this.http.post<any>(`api/profile/${currentUser.id}/friends/confirm`, confirmedFriend, {headers: headers});
   }
 
   deleteFriend(id: number): Observable<any> {
@@ -61,7 +61,7 @@ export class FriendService {
     let headers = new HttpHeaders()
       .set("Authorization", `Bearer ${currentUser.token}`);
 
-    return this.http.delete<any>(`second/profile/${currentUser.id}/friends/${id}`,  {headers:headers});
+    return this.http.delete<any>(`api/profile/${currentUser.id}/friends/${id}`,  {headers:headers});
   }
 
   getRelation(otherUserId: number): Observable<any> {
@@ -70,6 +70,6 @@ export class FriendService {
     let headers = new HttpHeaders()
       .set("Authorization", `Bearer ${currentUser.token}`);
 
-    return this.http.get(`second/profile/${currentUser.id}/relations/${otherUserId}`, {headers: headers});
+    return this.http.get(`api/profile/${currentUser.id}/relations/${otherUserId}`, {headers: headers});
   }
 }

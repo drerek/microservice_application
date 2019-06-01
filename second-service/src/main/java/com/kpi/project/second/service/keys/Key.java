@@ -167,7 +167,7 @@ public final class Key {
     public static final String ITEM_DELETE = "item.delete";
     public static final String ITEM_UPDATE = "item.update";
     public static final String ITEM_GET_TAG_BY_ITEM_ID = "item.getTagByItemId";
-    public static final String ITEM_GET_POPULAR_ITEMS ="item.getPopularItems";
+    public static final String ITEM_GET_POPULAR_ITEMS ="item.findFirst10ByOrderByNameDesc";
     public static final String ITEM_GET_PERSONAL_INFO_BY_ITEM_ID_USER_ID = "item.getPersonalInfoByUserIdItemId";
     public static final String ITEM_UPDATE_USER_ITEM = "item.updateUserItem";
     public static final String ITEM_DELETE_FROM_WISH_LIST = "item.deleteFromWishList";

@@ -111,7 +111,7 @@ export class WishListComponent implements OnInit {
   }
 
   getActionBackground(item: Item) {
-    if (item.ownerId !== this.profile.id) {
+    if (item.ownerLogin !== this.profile.login) {
       return 'item-action-add';
     } else {
       return 'item-action-del';
@@ -135,7 +135,7 @@ export class WishListComponent implements OnInit {
   }
 
   bookWishItem(item: Item) {
-    item.bookerId = this.profile.id;
+    item.bookerId = this.profile.login;
     this.spinner.show();
     this.wishService.bookWishItem(item).subscribe(itemBooked => {
 
@@ -178,7 +178,7 @@ export class WishListComponent implements OnInit {
   addWishItem(item: Item) {
     let newItem = Object.assign({}, item);
 
-    newItem.ownerId = this.profile.id;
+    newItem.ownerLogin = this.profile.login;
     newItem.dueDate = this.dueDate + ' 00:00:00';
     newItem.priority = this.priority;
 
@@ -262,9 +262,9 @@ export class WishListComponent implements OnInit {
   details(item: Item) {
     if(this.category === WishListComponent.OWN_CATEGORY) {
       this.router.navigate([`./${this.login}/wishes/${item.itemId}`]);
-    } else if(this.category === WishListComponent.BOOKINGS_CATEGORY && item.ownerId !== 0) {
+    } else if(this.category === WishListComponent.BOOKINGS_CATEGORY && item.ownerLogin !== "") {
       this.spinner.show();
-      this.accountService.getLoginById(item.ownerId).subscribe(
+      this.accountService.getLoginById(item.ownerLogin).subscribe(
         login => {
           this.spinner.hide();
           this.router.navigate([`./${login}/wishes/${item.itemId}`]);

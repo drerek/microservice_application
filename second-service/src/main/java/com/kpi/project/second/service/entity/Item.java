@@ -1,17 +1,22 @@
 package com.kpi.project.second.service.entity;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
 @Data
+@Document(collection = "ITEM")
+@NoArgsConstructor
 public class Item {
 
-    private int itemId;
+    @Id
+    private String itemId;
 
     @NotBlank
     @Size(min = 3, max = 50)
@@ -26,16 +31,11 @@ public class Item {
 
     private String dueDate;
 
-    private int likes;
-
     List<String> tags;
 
     @NotNull
-    private int ownerId;
-
-    private int bookerId;
+    private String ownerLogin;
 
     private ItemPriority priority;
 
-    private boolean isLike;
 }

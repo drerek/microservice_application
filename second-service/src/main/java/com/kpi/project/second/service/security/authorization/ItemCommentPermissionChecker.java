@@ -20,7 +20,7 @@ public class ItemCommentPermissionChecker {
     @Autowired
     private AuthenticationFacade authenticationFacade;
 
-    public boolean canDeleteItemComment(int commentId) {
+    public boolean canDeleteItemComment(String commentId) {
 
         boolean permission = checkPermission(commentId);
 
@@ -29,16 +29,16 @@ public class ItemCommentPermissionChecker {
         return permission;
     }
 
-    private boolean checkPermission(int commentId) {
+    private boolean checkPermission(String commentId) {
         log.debug("Check permission for delete comment with id '{}'", commentId);
 
         log.debug("Try to get auth user");
         User user = authenticationFacade.getAuthentication();
 
         log.debug("Try to get itemComment for permission");
-        ItemComment itemComment = itemCommentDao.findById(commentId);
+        ItemComment itemComment = itemCommentDao.findById(commentId).get();
 
-        return itemComment.getAuthorId() == user.getId();
+        return itemComment.getAuthorLogin().equals(user.getLogin());
 
     }
 }

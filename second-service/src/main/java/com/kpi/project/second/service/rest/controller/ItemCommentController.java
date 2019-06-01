@@ -26,7 +26,7 @@ public class ItemCommentController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<ItemComment> getItemCommentById(@PathVariable int id){
+    public ResponseEntity<ItemComment> getItemCommentById(@PathVariable String id){
         log.debug("Try to get comment item with id '{}'", id);
         ItemComment itemComment = itemCommentService.findById(id);
 
@@ -36,7 +36,7 @@ public class ItemCommentController {
 
     @PreAuthorize("@itemCommentPermissionChecker.canDeleteItemComment(#id)")
     @DeleteMapping("{id}")
-    public ResponseEntity<ItemComment> deleteById(@PathVariable int id){
+    public ResponseEntity<ItemComment> deleteById(@PathVariable String id){
         log.debug("Try to delete comment item with id '{}'", id);
         ItemComment deletedItem = itemCommentService.deleteById(id);
 
@@ -45,7 +45,7 @@ public class ItemCommentController {
     }
 
     @PostMapping("{itemId}")
-    public ResponseEntity<ItemComment> insert(@Valid @RequestBody ItemComment itemComment, @PathVariable int itemId){
+    public ResponseEntity<ItemComment> insert(@Valid @RequestBody ItemComment itemComment, @PathVariable String itemId){
         log.debug("Try to insert comment '{}'", itemComment.getBodyText());
         ItemComment addedComment = itemCommentService.insert(itemComment.getBodyText(), itemId);
 
@@ -54,9 +54,9 @@ public class ItemCommentController {
     }
 
     @GetMapping("{itemId}/comments")
-    public ResponseEntity<List<ItemComment>> getCommentsByItemId(@PathVariable int itemId){
+    public ResponseEntity<List<ItemComment>> findByItemId(@PathVariable String itemId){
         log.debug("Try to get comments for item with id '{}'", itemId);
-        List<ItemComment> comments = itemCommentService.getCommentsByItemId(itemId);
+        List<ItemComment> comments = itemCommentService.findByItemId(itemId);
 
         log.debug("Send response body comments '{}' and status CREATED", comments);
         return new ResponseEntity<>(comments,HttpStatus.OK);

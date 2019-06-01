@@ -95,9 +95,9 @@
               </div>
               <div class="card-block">
                 <figure [ngClass]="['d-flex', 'justify-content-center', 'align-content-center', 'flex-wrap', 'item-add-del-wrap', getActionBackground(item)]">
-                  <img *ngIf="item.ownerId === profile.id" (click)="delete.show()"
+                  <img *ngIf="item.ownerLogin === profile.login" (click)="delete.show()"
                        class="item-action-add-del" src="assets/close-white.svg" alt="x">
-                  <img *ngIf="item.ownerId !== profile.id" (click)="add.show()"
+                  <img *ngIf="item.ownerLogin !== profile.login" (click)="add.show()"
                        class="item-action-add-del" src="assets/add.svg" alt="+">
                 </figure>
                 <h5 class="card-title mt-3">{{item.name}}</h5>
@@ -114,16 +114,7 @@
                 </div>
               </div>
               <div class="card-footer">
-                <div *ngIf="item.ownerId !== profile.id" class="float-left">
-                  <button *ngIf="item.bookerId !== 0 && item.bookerId !== profile.id"
-                          class="btn btn-secondary btn-sm" disabled>Booked
-                  </button>
-                  <button *ngIf="item.ownerId !== 0 && item.bookerId === 0"
-                          (click)="book.show()" class="btn btn-success btn-sm">Book
-                  </button>
-                  <button *ngIf="item.ownerId !== 0 && item.bookerId === profile.id"
-                          (click)="unbook.show()" class="btn btn-danger btn-sm">Unbook
-                  </button>
+                <div *ngIf="item.ownerLogin !== profile.login" class="float-left">
                 </div>
                 <a (click)="details(item)" class="btn btn-primary float-right btn-sm" style="color: white;">Details</a>
               </div>

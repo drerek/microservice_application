@@ -2,8 +2,8 @@ export class Item {
   itemId: number;
   name: string;
   description: string;
-  ownerId: number;
-  bookerId: number;
+  ownerLogin: string;
+  bookerId: string;
   priority: string;
   imageFilepath: string;
   link: string;
@@ -18,7 +18,7 @@ export class Item {
     itemClone.itemId = this.itemId;
     itemClone.name = this.name;
     itemClone.description = this.description;
-    itemClone.ownerId = this.ownerId;
+    itemClone.ownerLogin = this.ownerLogin;
     itemClone.bookerId = this.bookerId;
     itemClone.priority = this.priority;
     itemClone.imageFilepath = this.imageFilepath;

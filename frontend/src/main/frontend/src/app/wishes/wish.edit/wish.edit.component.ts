@@ -133,7 +133,7 @@ export class WishEditComponent implements OnInit {
   }
 
   onSubmit() {
-    this.editItem.ownerId = this.profile.id;
+    this.editItem.ownerLogin = this.profile.login;
 
     this.setCorrectDate();
 
@@ -158,7 +158,7 @@ export class WishEditComponent implements OnInit {
         this.selectedImage = null;
       }
     }, error => {
-      this.appComponent.showError(error, "Error")
+      this.appComponent.showError(error, "Error");
       this.spinner.hide();
     });
   }

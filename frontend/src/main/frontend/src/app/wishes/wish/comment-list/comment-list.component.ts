@@ -11,12 +11,12 @@ export class CommentListComponent implements OnInit {
   @Input() comment: ItemComment;
   @Output() deleteComment = new EventEmitter<boolean>();
 
-  userId: number;
+  ownerLogin: string;
 
   constructor() { }
 
   ngOnInit() {
-    this.userId = JSON.parse(localStorage.getItem('currentUser')).id;
+    this.ownerLogin = JSON.parse(localStorage.getItem('currentUser')).login;
   }
 
   deleteClicked() {

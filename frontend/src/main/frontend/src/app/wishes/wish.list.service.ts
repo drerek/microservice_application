@@ -15,7 +15,7 @@ export class WishListService {
 
   initPrePath() {
     this.currentUser = JSON.parse(localStorage.currentUser);
-    this.prePath = `second/users/${this.currentUser.id}`;
+    this.prePath = `second/users/${this.currentUser.login}`;
   }
 
   getWishList(category: string, login = '', tags: string[] = []): Observable<Item[]> {

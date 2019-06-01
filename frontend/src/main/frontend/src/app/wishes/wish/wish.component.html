@@ -26,7 +26,7 @@
 
           <!--Item owner-->
 
-          <div *ngIf="this.item.ownerId !== 0" class="form-group">
+          <div *ngIf="!this.item.ownerLogin" class="form-group">
             <label class="form-control-label"><u>Item owner:</u></label>
             <div><a href="#/{{ownerLogin}}/profile">{{ownerLogin}}</a></div>
           </div>
@@ -84,14 +84,14 @@
         </form>
 
         <a routerLink="/{{profile.login}}/wishes" class="btn btn-primary">Return to wishlist</a>
-        <button *ngIf="item.ownerId !== 0 && profile.login === login" type="button" (click)="delete.show()"
+        <button *ngIf="!item.ownerLogin && profile.login === login" type="button" (click)="delete.show()"
                 [disabled]="!item.priority"
                 class="btn btn-danger">Remove
         </button>
-        <button *ngIf="item.ownerId !== profile.id" type="button" (click)="add.show()"
+        <button *ngIf="item.ownerLogin !== profile.login" type="button" (click)="add.show()"
                 class="btn btn-primary">Add
         </button>
-        <button *ngIf="item.ownerId !== 0 && profile.login === login"
+        <button *ngIf="!item.ownerLogin && profile.login === login"
                 routerLink="/{{profile.login}}/wishes/edit/{{item.itemId}}" type="button" class="btn btn-warning">Edit
         </button>
 

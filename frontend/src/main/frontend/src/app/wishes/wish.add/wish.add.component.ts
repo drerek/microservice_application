@@ -118,7 +118,7 @@ export class WishAddComponent implements OnInit {
   }
 
   onSubmit() {
-    this.newItem.ownerId = this.profile.id;
+    this.newItem.ownerLogin = this.profile.login;
 
     this.setCorrectDate();
 

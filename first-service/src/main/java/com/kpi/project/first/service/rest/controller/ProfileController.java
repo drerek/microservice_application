@@ -1,8 +1,8 @@
-package com.kpi.project.second.service.rest.controller;
+package com.kpi.project.first.service.rest.controller;
 
-import com.kpi.project.second.service.entity.User;
-import com.kpi.project.second.service.service.ProfileService;
-import com.kpi.project.second.service.service.StorageService;
+import com.kpi.project.first.service.entity.User;
+import com.kpi.project.first.service.service.ProfileService;
+import com.kpi.project.first.service.service.StorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/second/profile")
+@RequestMapping(path = "/api/profile")
 public class ProfileController {
 
     private static Logger log = LoggerFactory.getLogger(ProfileController.class);

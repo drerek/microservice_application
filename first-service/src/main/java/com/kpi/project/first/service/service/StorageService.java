@@ -1,21 +1,21 @@
-package com.kpi.project.second.service.service;
+package com.kpi.project.first.service.service;
 
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import com.kpi.project.second.service.dao.UserDao;
-import com.kpi.project.second.service.entity.User;
-import com.kpi.project.second.service.exception.runtime.frontend.detailed.FileUploadException;
-import com.kpi.project.second.service.security.AuthenticationFacade;
+import com.kpi.project.first.service.dao.UserDao;
+import com.kpi.project.first.service.entity.User;
+import com.kpi.project.first.service.exception.runtime.frontend.detailed.FileUploadException;
+import com.kpi.project.first.service.security.AuthenticationFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import static com.kpi.project.second.service.keys.Key.EXCEPTION_FILE_UPLOAD;
+import static com.kpi.project.first.service.keys.Key.EXCEPTION_FILE_UPLOAD;
 
 
 @Service

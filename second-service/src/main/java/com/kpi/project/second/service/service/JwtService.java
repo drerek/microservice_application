@@ -1,23 +1,16 @@
 package com.kpi.project.second.service.service;
 
-import com.kpi.project.second.service.dao.UserDao;
 import com.kpi.project.second.service.entity.User;
 import com.kpi.project.second.service.security.jwt.SecretKeyProvider;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Component;
 import org.springframework.core.env.Environment;
-
-import java.time.LocalDateTime;
-import java.util.Date;
-
-import static java.time.ZoneOffset.UTC;
+import org.springframework.stereotype.Component;
 
 
 @PropertySource("classpath:image.properties")
@@ -37,12 +30,10 @@ public class JwtService {
     private Environment env;
 
     private final SecretKeyProvider secretKeyProvider;
-    private final UserDao userDao;
 
     @Autowired
-    public JwtService(SecretKeyProvider secretKeyProvider, UserDao userDao) {
+    public JwtService(SecretKeyProvider secretKeyProvider) {
         this.secretKeyProvider = secretKeyProvider;
-        this.userDao = userDao;
     }
 
     public User verify(String token) {
@@ -56,23 +47,8 @@ public class JwtService {
         String login = claims.getBody().get(env.getProperty(JWT_LOGIN)).toString();
 
         log.debug("Login '{}' was parsed successfully", login);
-
-        return userDao.findByLogin(login);
+        User user = new User();
+        user.setLogin(login);
+        return user;
     }
-
-    public User verifyForRecoveryPassword(String token) {
-        log.debug("Trying to get secret key form SecretKeyProvider");
-
-        byte[] secretKey = secretKeyProvider.getKey();
-
-        log.debug("Trying to parse email from token '{}'", token);
-
-        Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
-        String email = claims.getBody().get(env.getProperty(JWT_EMAIL)).toString();
-
-        log.debug("Email '{}' was parsed successfully", email);
-
-        return userDao.findByEmail(email);
-    }
-
 }

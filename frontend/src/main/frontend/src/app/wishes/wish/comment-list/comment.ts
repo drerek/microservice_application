@@ -1,8 +1,8 @@
 export class ItemComment {
-  public commentId: number;
+  public commentId: string;
   public bodyText: string;
   public postTime: string;
-  public authorId: number;
+  public ownerLogin: string;
   public login: string;
   public imageFilepath :string;
 }

@@ -20,7 +20,7 @@
           <div class="post-description">
             <p>{{comment.bodyText}}</p>
           </div>
-          <button *ngIf="comment.authorId==userId" class="btn btn-danger" (click)="deleteClicked()">Delete</button>
+          <button *ngIf="comment.ownerLogin==ownerLogin" class="btn btn-danger" (click)="deleteClicked()">Delete</button>
         </div>
       </div>
     </div>

@@ -8,7 +8,7 @@ export class CommentService {
 
   constructor(private http: HttpClient) {}
 
-  add(idItem : number, comment:ItemComment): Observable<any> {
+  add(idItem : string, comment:ItemComment): Observable<any> {
     let headers = new HttpHeaders()
       .set("Authorization", `Bearer ${JSON.parse(localStorage.currentUser).token}`);
 
@@ -17,7 +17,7 @@ export class CommentService {
     });
   }
 
-  getAll(idItem: number): Observable<any[]> {
+  getAll(idItem: string): Observable<any[]> {
     let headers = new HttpHeaders()
       .set("Authorization", `Bearer ${JSON.parse(localStorage.currentUser).token}`);
 

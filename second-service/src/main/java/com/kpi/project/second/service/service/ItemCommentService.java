@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @PropertySource("classpath:strings.properties")
@@ -25,27 +26,26 @@ public class ItemCommentService {
     private final AuthenticationFacade authenticationFacade;
 
     @Autowired
-    public ItemCommentService(ItemCommentDao itemCommentDao, AuthenticationFacade authenticationFacade, Environment env) {
+    public ItemCommentService(ItemCommentDao itemCommentDao, AuthenticationFacade authenticationFacade) {
         this.itemCommentDao = itemCommentDao;
         this.authenticationFacade = authenticationFacade;
     }
 
-    public ItemComment findById(int id) {
+    public ItemComment findById(String id) {
 
         log.debug("Trying to get comment with id '{}'", id);
-
-        return itemCommentDao.findById(id);
-
+        Optional<ItemComment> itemComment = itemCommentDao.findById(id);
+        return itemComment.orElseGet(ItemComment::new);
     }
 
-    public ItemComment insert(String bodyText, int itemId) {
+    public ItemComment insert(String bodyText, String itemId) {
         log.debug("Trying to get authenticated user");
         User user = authenticationFacade.getAuthentication();
         log.debug("User was successfully received");
 
         ItemComment itemComment = new ItemComment();
-        itemComment.setPostTime(new Timestamp(System.currentTimeMillis()));
-        itemComment.setAuthorId(user.getId());
+        itemComment.setPostTime(String.valueOf(System.currentTimeMillis()));
+        itemComment.setAuthorLogin(user.getLogin());
         itemComment.setLogin(user.getLogin());
         itemComment.setImageFilepath(user.getImgPath());
         itemComment.setBodyText(bodyText);
@@ -56,22 +56,22 @@ public class ItemCommentService {
         return itemCommentDao.insert(itemComment);
     }
 
-    public List<ItemComment> getCommentsByItemId(int itemId) {
+    public List<ItemComment> findByItemId(String itemId) {
 
         log.debug("Trying to get comments for item with id '{}'", itemId);
-
-        return itemCommentDao.getCommentsForItemId(itemId);
+        return itemCommentDao.findByItemId(itemId);
 
     }
 
 
 
-    public ItemComment deleteById(int commentId) {
+    public ItemComment deleteById(String commentId) {
 
         ItemComment deleteItem = findById(commentId);
         log.debug("Trying to delete comment with id '{}'", commentId);
 
-        return itemCommentDao.delete(deleteItem);
+        itemCommentDao.delete(deleteItem);
+        return deleteItem;
 
     }
 }
