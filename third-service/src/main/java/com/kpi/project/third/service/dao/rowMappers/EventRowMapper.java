@@ -30,7 +30,7 @@ public class EventRowMapper implements RowMapper<Event> {
         event.setIsDraft(resultSet.getInt(EVENT_IS_DRAFT) == 1);
         event.setFolderId(resultSet.getInt(EVENT_FOLDER_ID));
         event.setImageFilepath(resultSet.getString(EVENT_IMAGE_FILEPATH));
-        event.setOwnerId(resultSet.getInt("OWNER_ID"));
+        event.setOwnerId(resultSet.getString("OWNER_ID"));
 
         return event;
     }

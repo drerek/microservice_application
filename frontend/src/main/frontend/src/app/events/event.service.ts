@@ -14,7 +14,7 @@ export class EventService {
 
   initPrePath() {
     this.currentUser = JSON.parse(localStorage.currentUser);
-    this.prePath = `third/users/${this.currentUser.id}`;
+    this.prePath = `third/users/${this.currentUser.login}`;
   }
 
   getEvent(eventId: number): Observable<Evento> {
@@ -109,7 +109,7 @@ export class EventService {
       {headers: headers, params: {'startDate': startDate, 'endDate': endDate}});
   }
 
-  getPublicEvents(userId: number, queryField: string): Observable<any> {
+  getPublicEvents(userId: string, queryField: string): Observable<any> {
     this.initPrePath();
 
     let headers = new HttpHeaders()

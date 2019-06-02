@@ -26,17 +26,17 @@ public class FolderService {
         this.eventDao = eventDao;
     }
 
-    public List<Folder> getUserFolders(int userId) {
+    public List<Folder> getUserFolders(String userId) {
         log.debug("Trying to get all folders for user with id '{}'", userId);
 
         return folderDao.getUserFolders(userId);
     }
 
-    public Folder getFolder(int userId, int folderId){
+    public Folder getFolder(String userId, int folderId){
         return getFolder(userId, folderId, true);
     }
 
-    private Folder getFolder(int userId, int folderId, boolean withEvents) {
+    private Folder getFolder(String userId, int folderId, boolean withEvents) {
         log.debug("Trying to get folder for user with id '{}' by folderId '{}'", userId, folderId);
 
         Folder folder = folderDao.findById(folderId, userId);
@@ -67,7 +67,7 @@ public class FolderService {
         return folderDao.update(folder);
     }
 
-    public Folder deleteFolder(int userId, int folderId) {
+    public Folder deleteFolder(String userId, int folderId) {
         log.debug("If folder is not general set all events to general");
 
         Folder folder = getFolder(userId, folderId, false);

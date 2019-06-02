@@ -137,7 +137,7 @@ export class FolderListComponent implements OnInit {
 
     let folder: Folder = new Folder();
     folder.name = folderName.value;
-    folder.userId = JSON.parse(localStorage.currentUser).id;
+    folder.userId = JSON.parse(localStorage.currentUser).login;
 
     this.folderListService.addFolder(folder)
       .subscribe((res) => {

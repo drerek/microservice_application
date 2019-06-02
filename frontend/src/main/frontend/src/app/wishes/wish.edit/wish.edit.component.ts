@@ -51,14 +51,14 @@ export class WishEditComponent implements OnInit {
 
   paramsSubscriber() {
     this.route.params.subscribe((params: Params) => {
-      let id = +params['itemId'];
+      let id = params['itemId'];
       this.login = params['login'];
       this.getWishItemById(id);
     },
       error => this.appComponent.showError(error, "Error"));
   }
 
-  getWishItemById(id: number) {
+  getWishItemById(id: string) {
     this.spinner.show();
     this.wishService.getWishItem(id, this.login).subscribe(item => {
         this.editItem = item;

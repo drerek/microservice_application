@@ -13,10 +13,10 @@ export class CalendarService {
 
   initPrePath() {
     this.currentUser = JSON.parse(localStorage.currentUser);
-    this.prePath = `third/users/${this.currentUser.id}`;
+    this.prePath = `third/users/${this.currentUser.login}`;
   }
 
-  getUserEvents(userId: number): Observable<any> {
+  getUserEvents(userId: string): Observable<any> {
     this.initPrePath();
 
     let headers = new HttpHeaders()

@@ -34,23 +34,23 @@ public class FolderDaoImpl extends AbstractDao<Folder> implements FolderDao {
 
 
     @Override
-    public List<Folder> getUserFolders(int id) {
-        log.debug("Try to get folders for user with id '{}'", id);
-        List<Folder> userFolders = new ArrayList<>();
+    public List<Folder> getUserFolders(String login) {
+        log.debug("Try to get folders for user with id '{}'", login);
+        List<Folder> userFolders;
 
         try {
             userFolders = jdbcTemplate.query(env.getProperty(FOLDER_GET_USER_FOLDERS),
-                    new Object[]{id}, new FolderRowMapper());
+                    new Object[]{login}, new FolderRowMapper());
         } catch (DataAccessException e) {
-            log.error("Query fails by getting folders for user with id '{}'", id,e);
+            log.error("Query fails by getting folders for user with id '{}'", login,e);
             throw new DatabaseWorkException(env.getProperty(EXCEPTION_DATABASE_WORK));
         }
 
         if (userFolders.isEmpty()) {
-            throw new EntityNotFoundException(String.format(env.getProperty(EXCEPTION_ENTITY_NOT_FOUND), "Folder", "userId", id));
+            throw new EntityNotFoundException(String.format(env.getProperty(EXCEPTION_ENTITY_NOT_FOUND), "Folder", "userId", login));
         }
 
-        log.debug("Users folders for user with id '{}' were founded counted '{}' pcs", id, userFolders.size());
+        log.debug("Users folders for user with id '{}' were founded counted '{}' pcs", login, userFolders.size());
 
         return userFolders;
     }
@@ -81,9 +81,8 @@ public class FolderDaoImpl extends AbstractDao<Folder> implements FolderDao {
     @Override
     public void moveEventsToGeneral(int id) {
         log.debug("Try to move events to general with id '{}'", id);
-        int result;
         try {
-            result = jdbcTemplate.update(env.getProperty(FOLDER_REMOVE_EVENTS), id);
+            jdbcTemplate.update(env.getProperty(FOLDER_REMOVE_EVENTS), id);
 
         } catch (DataAccessException e) {
             log.error("Query fails by moving events to general with id '{}'", id,e);
@@ -95,7 +94,7 @@ public class FolderDaoImpl extends AbstractDao<Folder> implements FolderDao {
     }
 
     @Override
-    public Folder findById(int id, int userId) {
+    public Folder findById(int id, String userId) {
         log.debug("Try to find folder with id '{}' for user with id '{}'", id, userId);
         Folder folder;
 

@@ -1,8 +1,8 @@
 package com.kpi.project.third.service.service;
 
 import com.kpi.project.third.service.dao.EventDao;
-import com.kpi.project.third.service.dao.UserDao;
-import com.kpi.project.third.service.entity.*;
+import com.kpi.project.third.service.entity.Event;
+import com.kpi.project.third.service.entity.User;
 import com.kpi.project.third.service.exception.runtime.frontend.detailed.LoginNotFoundException;
 import com.kpi.project.third.service.security.AuthenticationFacade;
 import org.slf4j.Logger;
@@ -10,8 +10,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -28,22 +33,19 @@ public class EventService {
 
     private static Logger log = LoggerFactory.getLogger(EventService.class);
 
-    @Autowired
-    protected Environment env;
-
-    private final PdfCreateService pdfCreateService;
+    protected final Environment env;
+    private final JwtService jwtService;
     private final EventDao eventDao;
-    private final UserDao userDao;
     private final AuthenticationFacade authenticationFacade;
     private final MailService mailService;
 
     @Autowired
-    public EventService(EventDao eventDao, UserDao userDao, MailService mailService, AuthenticationFacade authenticationFacade, PdfCreateService pdfCreateService) {
+    public EventService(JwtService jwtService, EventDao eventDao, MailService mailService, AuthenticationFacade authenticationFacade, Environment env) {
+        this.jwtService = jwtService;
         this.eventDao = eventDao;
-        this.userDao = userDao;
         this.mailService = mailService;
         this.authenticationFacade = authenticationFacade;
-        this.pdfCreateService = pdfCreateService;
+        this.env = env;
     }
 
     public Event getEvent(int eventId) {
@@ -56,7 +58,7 @@ public class EventService {
         return event;
     }
 
-    public List<Event> getEventsByUser(int userId){
+    public List<Event> getEventsByUser(String userId){
         log.debug("Trying to get events from dao by userId '{}'", userId);
 
         List<Event> events = eventDao.findByUserId(userId);
@@ -66,7 +68,7 @@ public class EventService {
         return events;
     }
 
-    public List<Event> getEventsByType(int userId, String eventType, int folderId) {
+    public List<Event> getEventsByType(String userId, String eventType, int folderId) {
         log.debug("Trying to get events from dao by folderId '{}' and userId '{}'", folderId, userId);
 
         List<Event> events = eventDao.findByType(userId, eventType, folderId);
@@ -76,7 +78,7 @@ public class EventService {
         return events;
     }
 
-    public List<Event> getFolderEvents(int userId, int folderId) {
+    public List<Event> getFolderEvents(String userId, int folderId) {
         log.debug("Trying to get events from dao by folderId '{}' and userId '{}'", folderId, userId);
 
         List<Event> events = eventDao.findByFolderId(userId, folderId);
@@ -86,7 +88,7 @@ public class EventService {
         return events;
     }
 
-    public List<Event> getPublicEvents(int userId, String eventName) {
+    public List<Event> getPublicEvents(String userId, String eventName) {
         log.debug("Trying to get public events by userId '{}'", userId);
 
         List<Event> events = eventDao.getAllPublic(userId, eventName);
@@ -96,7 +98,7 @@ public class EventService {
         return events;
     }
 
-    public List<Event> getEventsByPeriod(int userId, String startDate, String endDate) {
+    public List<Event> getEventsByPeriod(String userId, String startDate, String endDate) {
         log.debug("Trying to get events from dao by userId '{}'", userId);
 
         List<Event> events = eventDao.getPeriodEvents(userId, startDate, endDate);
@@ -116,7 +118,7 @@ public class EventService {
         return events;
     }
 
-    public List<Event> getDrafts(int userId, int folderId) {
+    public List<Event> getDrafts(String userId, int folderId) {
         log.debug("Trying to get drafts from dao by user id '{}' and folder id '{}'", userId, folderId);
 
         List<Event> events = eventDao.getDrafts(userId, folderId);
@@ -127,7 +129,7 @@ public class EventService {
     }
 
     @Transactional
-    public Event addEvent(int userId, Event event) {
+    public Event addEvent(String userId, Event event) {
         log.debug("Trying to insert event '{}' to database", event.toString());
 
         int eventPeriodicityId = event.getPeriodicity().getValue();
@@ -174,18 +176,24 @@ public class EventService {
 
         event = eventDao.deleteMembers(event);
 
-        log.debug("Try to unpin event with id : '{}', for all users", eventDao.unpinAllOnDelete(eventId));
-
         log.debug("Try to unpin event with id : '{}', for all users", eventId);
 
         log.debug("Trying to delete eventId '{}' from database", eventId);
         return eventDao.delete(event);
     }
 
-    public User addParticipant(int ownerId, int eventId, String login) {
+    public User addParticipant(String ownerId, int eventId, String login) {
         log.debug("Trying to add participant with login '{}'", login);
+        User ownerUser = authenticationFacade.getAuthentication();
+        String token = jwtService.tokenFor(ownerUser);
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization","Bearer "+token);
+        HttpEntity entity = new HttpEntity(headers);
 
-        User user = userDao.findByLogin(login);
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<User> responseEntity = restTemplate.exchange("http://localhost/api/profile/"+login+"/", HttpMethod.GET,entity,User.class);
+        User user = responseEntity.getBody();
+        log.debug("~~~" + user);
 
         if (user == null) {
             log.error("Can not find user with login '{}'", login);
@@ -199,7 +207,7 @@ public class EventService {
         return user;
     }
 
-    public Event deleteParticipants(int ownerId, int eventId) {
+    public Event deleteParticipants(String ownerId, int eventId) {
         log.debug("Trying to find event by id '{}'", eventId);
 
         Event event = getEvent(eventId);
@@ -209,7 +217,7 @@ public class EventService {
         return eventDao.deleteParticipants(ownerId, event);
     }
 
-    public void deleteParticipant(int ownerId, int eventId, int participantId) {
+    public void deleteParticipant(String ownerId, int eventId, int participantId) {
         log.debug("Trying to delete events from DB by ownerId '{}', eventId '{}' and participantId '{}'", ownerId, eventId, participantId);
 
         eventDao.deleteParticipant(ownerId, eventId, participantId);
@@ -235,17 +243,5 @@ public class EventService {
         log.debug("Try send mail with file");
 
         mailService.sendMailWithEventPlan(user, file);
-    }
-
-    public Event pinEvent(int userId, int eventId) {
-        log.debug("Trying to pin event with id '{}' by userId '{}'", eventId, userId);
-
-        return eventDao.pinEvent(userId, eventId);
-    }
-
-    public Event unpinEvent(int userId, int eventId) {
-        log.debug("Trying to unpin event with id'{}' by userId '{}'", eventId, userId);
-
-        return eventDao.unpinEvent(userId, eventId);
     }
 }

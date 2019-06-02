@@ -65,7 +65,7 @@ export class EventListComponent implements OnInit {
       .debounceTime(1000)
       .distinctUntilChanged()
       .subscribe(queryField => {
-        this.eventService.getPublicEvents(this.profile.id, queryField)
+        this.eventService.getPublicEvents(this.profile.login, queryField)
           .subscribe((events) => {
             this.publicEvents = events;
           }, error => {

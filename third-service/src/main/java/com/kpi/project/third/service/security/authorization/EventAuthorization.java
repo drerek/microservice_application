@@ -13,12 +13,12 @@ public class EventAuthorization extends AbstractAuthorization {
         super(authenticationFacade);
     }
 
-    public boolean isEventCorrect(int userId, Event event) {
-        return event != null && isUserCorrect(userId) && userId == event.getOwnerId();
+    public boolean isEventCorrect(String userId, Event event) {
+        return event != null && isUserCorrect(userId) && userId.equals(event.getOwnerId());
 
     }
 
-    public boolean isEventCorrect(int userId, int eventId, Event event) {
+    public boolean isEventCorrect(String userId, int eventId, Event event) {
         return isEventCorrect(userId, event) && eventId == event.getEventId();
     }
 

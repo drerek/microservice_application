@@ -1,6 +1,5 @@
 package com.kpi.project.third.service.service;
 
-import com.kpi.project.third.service.dao.UserDao;
 import com.kpi.project.third.service.entity.User;
 import com.kpi.project.third.service.security.jwt.SecretKeyProvider;
 import io.jsonwebtoken.Claims;
@@ -11,8 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Component;
 import org.springframework.core.env.Environment;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -37,12 +36,10 @@ public class JwtService {
     private Environment env;
 
     private final SecretKeyProvider secretKeyProvider;
-    private final UserDao userDao;
 
     @Autowired
-    public JwtService(SecretKeyProvider secretKeyProvider, UserDao userDao) {
+    public JwtService(SecretKeyProvider secretKeyProvider) {
         this.secretKeyProvider = secretKeyProvider;
-        this.userDao = userDao;
     }
 
     public User verify(String token) {
@@ -57,22 +54,29 @@ public class JwtService {
 
         log.debug("Login '{}' was parsed successfully", login);
 
-        return userDao.findByLogin(login);
+        log.debug("Login '{}' was parsed successfully", login);
+        User user = new User();
+        user.setLogin(login);
+        return user;
     }
 
-    public User verifyForRecoveryPassword(String token) {
+    public String tokenFor(User user) {
         log.debug("Trying to get secret key form SecretKeyProvider");
 
         byte[] secretKey = secretKeyProvider.getKey();
 
-        log.debug("Trying to parse email from token '{}'", token);
+        log.debug("Trying to build a token for user '{}'", user);
 
-        Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
-        String email = claims.getBody().get(env.getProperty(JWT_EMAIL)).toString();
-
-        log.debug("Email '{}' was parsed successfully", email);
-
-        return userDao.findByEmail(email);
+        Date expiration = Date.from(LocalDateTime.now(UTC).plusDays(365).toInstant(UTC));
+        return Jwts.builder()
+                .setSubject(env.getProperty(JWT_SUBJECT))
+                .setExpiration(expiration)
+                .setIssuer(env.getProperty(JWT_ISSUER))
+                .claim(env.getProperty(JWT_LOGIN), user.getLogin())
+                .claim(env.getProperty(JWT_ID), user.getId())
+                .signWith(SignatureAlgorithm.HS512, secretKey)
+                .compact();
     }
+
 
 }

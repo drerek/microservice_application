@@ -24,7 +24,7 @@ public class FolderController {
 
     @GetMapping
     @PreAuthorize("@folderAuthorization.isUserCorrect(#userId)")
-    public ResponseEntity<List<Folder>> getAllFolders(@PathVariable Integer userId) {
+    public ResponseEntity<List<Folder>> getAllFolders(@PathVariable String userId) {
         log.debug("Trying to get all user folders");
         List<Folder> folders;
         try {
@@ -50,7 +50,7 @@ public class FolderController {
 
     @GetMapping("/{folderId}")
     @PreAuthorize("@folderAuthorization.isUserCorrect(#userId)")
-    public ResponseEntity<Folder> getFolderById(@PathVariable Integer userId, @PathVariable int folderId) {
+    public ResponseEntity<Folder> getFolderById(@PathVariable String userId, @PathVariable int folderId) {
         log.debug("Trying to get folder by folderId {}", folderId);
 
         Folder folder = folderService.getFolder(userId, folderId);
@@ -64,7 +64,7 @@ public class FolderController {
 
     @PostMapping
     @PreAuthorize("@folderAuthorization.isFolderCorrect(#userId, #folder)")
-    public ResponseEntity<Folder> addFolder(@PathVariable Integer userId, @Valid @RequestBody Folder folder) {
+    public ResponseEntity<Folder> addFolder(@PathVariable String userId, @Valid @RequestBody Folder folder) {
         log.debug("Trying to save folder {}", folder.toString());
 
         Folder addedFolder = folderService.addFolder(folder);
@@ -76,7 +76,7 @@ public class FolderController {
 
     @PutMapping("/{folderId}")
     @PreAuthorize("@folderAuthorization.isFolderCorrect(#userId, #folderId, #folder)")
-    public ResponseEntity<Folder> updateFolder(@PathVariable Integer userId, @PathVariable Integer folderId, @Valid @RequestBody Folder folder) {
+    public ResponseEntity<Folder> updateFolder(@PathVariable String userId, @PathVariable Integer folderId, @Valid @RequestBody Folder folder) {
         log.debug("Trying to update folder {}", folder.toString());
 
         Folder updatedFolder = folderService.updateFolder(folder);
@@ -88,7 +88,7 @@ public class FolderController {
 
     @DeleteMapping("/{folderId}")
     @PreAuthorize("@folderAuthorization.isUserCorrect(#userId)")
-    public ResponseEntity<Folder> deleteFolder(@PathVariable Integer userId, @PathVariable Integer folderId) {
+    public ResponseEntity<Folder> deleteFolder(@PathVariable String userId, @PathVariable Integer folderId) {
         log.debug("Trying to delete folder by id '{}'", folderId);
 
         Folder deletedFolder = folderService.deleteFolder(userId, folderId);

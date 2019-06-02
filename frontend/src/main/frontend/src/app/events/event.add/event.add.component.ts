@@ -19,7 +19,7 @@ export class EventAddComponent implements OnInit {
 
   folderId: number;
   eventt: Evento;
-  userId: number;
+  userId: string;
   currentDate: string;
   datee: string;
   time: string;
@@ -33,7 +33,7 @@ export class EventAddComponent implements OnInit {
   lng: number;
   searchControl: FormControl;
   currentUserLogin: string;
-  currentUserId: number;
+  currentUserId: string;
   type: string = 'event';
 
   @ViewChild("search") searchElementRef: ElementRef;
@@ -60,7 +60,7 @@ export class EventAddComponent implements OnInit {
     this.getCurrentDate();
     this.resetEvent();
     this.currentUserLogin = JSON.parse(localStorage.currentUser).login;
-    this.currentUserId = JSON.parse(localStorage.currentUser).id;
+    this.currentUserId = JSON.parse(localStorage.currentUser).login;
     this.fileRegexp = new RegExp('^.*\\.(jpg|JPG|gif|GIF|png|PNG)$');
 
     this.searchControl = new FormControl();
@@ -97,7 +97,7 @@ export class EventAddComponent implements OnInit {
 
   resetEvent() {
     this.eventt.folderId = this.folderId;
-    this.eventt.ownerId = JSON.parse(localStorage.currentUser).id;
+    this.eventt.ownerId = JSON.parse(localStorage.currentUser).login;
     this.datee = this.currentDate;
     this.eventt.eventType = "EVENT";
     this.eventt.name = "";

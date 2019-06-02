@@ -14,7 +14,7 @@ public class FolderRowMapper implements RowMapper<Folder> {
         Folder folder = new Folder();
 
         folder.setFolderId(resultSet.getInt(FOLDER_FOLDER_ID));
-        folder.setUserId(resultSet.getInt(FOLDER_USER_ID));
+        folder.setUserId(resultSet.getString(FOLDER_USER_ID));
         folder.setName(resultSet.getString(FOLDER_NAME));
 
         return folder;

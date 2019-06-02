@@ -13,7 +13,7 @@ export class Evento{
   isDraft : boolean;
   folderId : number;
   imageFilepath : string;
-  ownerId : number;
+  ownerId : string;
   participants : Profile[];
 
   clone() : Evento {

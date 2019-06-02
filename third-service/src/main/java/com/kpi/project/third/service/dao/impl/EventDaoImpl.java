@@ -1,8 +1,8 @@
 package com.kpi.project.third.service.dao.impl;
 
+
 import com.kpi.project.third.service.dao.AbstractDao;
 import com.kpi.project.third.service.dao.EventDao;
-import com.kpi.project.third.service.dao.UserDao;
 import com.kpi.project.third.service.dao.rowMappers.EventRowMapper;
 import com.kpi.project.third.service.dao.rowMappers.UserRowMapper;
 import com.kpi.project.third.service.entity.Event;
@@ -37,16 +37,12 @@ public class EventDaoImpl extends AbstractDao<Event> implements EventDao {
         log = LoggerFactory.getLogger(EventDaoImpl.class);
     }
 
-
-    @Autowired
-    private UserDao userDao;
-
     private static final int OWNER_ID = 1;
     private static final int PARTICIPANT_ID = 2;
 
 
     @Override
-    public List<Event> findByUserId(int userId) {
+    public List<Event> findByUserId(String userId) {
         List<Event> events;
         log.debug("Try to find list of events by user with id '{}'", userId);
         try {
@@ -131,7 +127,7 @@ public class EventDaoImpl extends AbstractDao<Event> implements EventDao {
      * @return created event with id
      */
     @Override
-    public Event createEvent(Event model, int userId) {
+    public Event createEvent(Event model, String userId) {
         log.debug("Try to create event with name '{}' by user with id '{}'", model.getName(), userId);
         Event event;
 
@@ -142,7 +138,7 @@ public class EventDaoImpl extends AbstractDao<Event> implements EventDao {
     }
 
     @Override
-    public Role getRole(int userId, int eventId) {
+    public Role getRole(String userId, int eventId) {
         log.debug("Try to get role for user with id '{}' for event with id '{}'", userId, eventId);
         Role role;
 
@@ -164,7 +160,7 @@ public class EventDaoImpl extends AbstractDao<Event> implements EventDao {
         return role;
     }
 
-    private void insertUserEvent(int userId, int eventId, int roleId) {
+    private void insertUserEvent(String userId, int eventId, int roleId) {
         log.debug("Try to insert user event with user id '{}', event id '{}', role id '{}'", userId, eventId, roleId);
         int result;
         SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(jdbcTemplate.getDataSource())
@@ -189,7 +185,7 @@ public class EventDaoImpl extends AbstractDao<Event> implements EventDao {
         }
     }
 
-    public void addParticipant(int ownerId, int participantId, int eventId) {
+    public void addParticipant(String ownerId, int participantId, int eventId) {
         log.debug("Try to insert participant to event with participant id '{}', event id '{}', owner id '{}'", participantId, eventId, ownerId);
         int result;
 
@@ -209,7 +205,7 @@ public class EventDaoImpl extends AbstractDao<Event> implements EventDao {
     }
 
     @Override
-    public Event deleteParticipants(int ownerId, Event model) {
+    public Event deleteParticipants(String ownerId, Event model) {
         log.debug("Try to delete event participants with eventId '{}'", model.getEventId());
         int result;
 
@@ -234,7 +230,7 @@ public class EventDaoImpl extends AbstractDao<Event> implements EventDao {
         try {
             result = jdbcTemplate.update(env.getProperty(EVENT_DELETE_MEMBERS), event.getEventId());
             event.setParticipants(null);
-            event.setOwnerId(0);
+            event.setOwnerId("");
         } catch (DataAccessException e) {
             log.error("Query fails by delete participants of event with id '{}'", event.getEventId(),e);
             throw new DatabaseWorkException(env.getProperty(EXCEPTION_DATABASE_WORK));
@@ -250,7 +246,7 @@ public class EventDaoImpl extends AbstractDao<Event> implements EventDao {
     }
 
     @Override
-    public void deleteParticipant(int ownerId, int eventId, int participantId) {
+    public void deleteParticipant(String ownerId, int eventId, int participantId) {
         int result;
 
         log.debug("Try to delete event members with eventId '{}'", eventId);
@@ -271,7 +267,7 @@ public class EventDaoImpl extends AbstractDao<Event> implements EventDao {
     }
 
     @Override
-    public List<Event> getPeriodEvents(int userId, String startDate, String endDate) {
+    public List<Event> getPeriodEvents(String userId, String startDate, String endDate) {
         List<Event> events;
         log.debug("Try to find list of events by user between dates with id '{}' and dates '{}' '{}'",
                 userId, startDate, endDate);
@@ -314,7 +310,7 @@ public class EventDaoImpl extends AbstractDao<Event> implements EventDao {
     }
 
     @Override
-    public List<Event> getAllPublic(int userId, String eventName) {
+    public List<Event> getAllPublic(String userId, String eventName) {
         List<Event> events;
 
         log.debug("Try to find list of public events by user with id '{}' and query '{}'", userId, eventName);
@@ -383,7 +379,7 @@ public class EventDaoImpl extends AbstractDao<Event> implements EventDao {
     }
 
     @Override
-    public List<Event> findByFolderId(int userId, int folderId) {
+    public List<Event> findByFolderId(String userId, int folderId) {
         List<Event> events;
         log.debug("Try to find events with folder id '{}' and owner id '{}'", folderId);
         try {
@@ -403,7 +399,7 @@ public class EventDaoImpl extends AbstractDao<Event> implements EventDao {
     }
 
     @Override
-    public List<Event> getDrafts(int userId, int folderId) {
+    public List<Event> getDrafts(String userId, int folderId) {
         log.debug("Try to get drafts with folder id '{}'", folderId);
         List<Event> events;
 
@@ -420,7 +416,7 @@ public class EventDaoImpl extends AbstractDao<Event> implements EventDao {
     }
 
     @Override
-    public List<Event> findByType(int userId, String eventType, int folderId) {
+    public List<Event> findByType(String userId, String eventType, int folderId) {
         List<Event> events;
 
         log.debug("Try to find events with type '{}' with folderId '{}'", eventType, folderId);
@@ -456,68 +452,5 @@ public class EventDaoImpl extends AbstractDao<Event> implements EventDao {
 
         return participants;
 
-    }
-
-    @Override
-    public Event pinEvent(int userId, int eventId) {
-        log.debug("Try to pin event with id : '{}', user id: '{}'", eventId, userId);
-        int result;
-        try {
-            result = jdbcTemplate.update(env.getProperty(USER_SET_PINED_EVENT_ID),
-                    eventId, userId);
-
-            if (result != 0) {
-                log.debug("Pin by event id: '{}', user id: '{}' was added", eventId, userId);
-            } else {
-                log.debug("Pin by event id: '{}', user id: '{}' was not added", eventId, userId);
-                throw new UpdateException(env.getProperty(EXCEPTION_UPDATE));
-            }
-        } catch (DataAccessException e) {
-            log.error("Query fails by pin event with id: '{}', user id: '{}'", eventId, userId, e);
-            throw new DatabaseWorkException(env.getProperty(EXCEPTION_DATABASE_WORK));
-        }
-        return findById(eventId);
-    }
-
-    @Override
-    public Event unpinEvent(int userId, int eventId) {
-        log.debug("Try to unpin event with id : '{}', user id: '{}'", eventId, userId);
-        int result;
-        try {
-            result = jdbcTemplate.update(env.getProperty(USER_DELETE_PINED_EVENT_ID),
-                    userId);
-
-            if (result != 0) {
-                log.debug("Unpin by event name: '{}', user id: '{}' was removed", eventId, userId);
-            } else {
-                log.debug("Unpin by event name: '{}', user id: '{}' was not removed", eventId, userId);
-                throw new DeleteException(EXCEPTION_DELETE);
-            }
-        } catch (DataAccessException e) {
-            log.error("Query fails by pin event: '{}', user id: '{}'", eventId, userId, e);
-            throw new DatabaseWorkException(env.getProperty(EXCEPTION_DATABASE_WORK));
-        }
-        return findById(eventId);
-    }
-
-    @Override
-    public int unpinAllOnDelete(int eventId) {
-
-        log.debug("Try to unpin event with id : '{}', for all users", eventId);
-        int result;
-        try {
-            result = jdbcTemplate.update(env.getProperty(EVENT_UNPIN_ALL_ON_DELETE), eventId);
-
-            if (result != 0) {
-                log.debug("Unpin event with id : '{}', for all users", eventId);
-            } else {
-                log.debug("No users for unpin event with id : '{}', for all users", eventId);
-            }
-        } catch (DataAccessException e) {
-            log.error("Query fails by unpin event: '{}' for all users", eventId, e);
-            throw new DatabaseWorkException(env.getProperty(EXCEPTION_DATABASE_WORK));
-        }
-
-        return eventId;
     }
 }

@@ -7,7 +7,7 @@ export class ImageUploadService {
 
   constructor(private http: HttpClient) { }
 
-  pushFileToStorage(file: File, userId: number): Observable<any> {
+  pushFileToStorage(file: File, userId: string): Observable<any> {
     let headers = new HttpHeaders()
       .set("Authorization", `Bearer ${JSON.parse(localStorage.currentUser).token}`);
 

@@ -63,7 +63,7 @@ export class CalendarComponent implements OnInit {
 
   getRealEvents(){
     this.spinner.show();
-    let id = JSON.parse(localStorage.currentUser).id;
+    let id = JSON.parse(localStorage.currentUser).login;
 
     this.calendarService.getUserEvents(id)
       .subscribe((events) => {

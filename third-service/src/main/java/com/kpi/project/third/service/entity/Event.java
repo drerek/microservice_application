@@ -24,7 +24,6 @@ public class Event {
     private String name;
 
     private String eventDate;
-    private String pinnedEvent;
 
     @Size(max = 1023)
     private String description;
@@ -43,7 +42,7 @@ public class Event {
     @NotNull
     private int folderId;
     private String imageFilepath;
-    private int ownerId;
+    private String ownerId;
 
     private List<User> participants;
 

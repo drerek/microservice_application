@@ -18,7 +18,7 @@ export class EventEditComponent implements OnInit {
 
   eventId: number;
   folderId: number;
-  currentUserId: number;
+  currentUserId: string;
   eventt: Evento;
   lat: number;
   lng: number;
@@ -48,13 +48,13 @@ export class EventEditComponent implements OnInit {
               private appComponent: AppComponent) { }
 
   ngOnInit() {
-    this.spinner.show()
+    this.spinner.show();
 
     this.route.params.subscribe(params => {
       this.eventId = params['eventId'];
       this.folderId = params['folderId'];
       this.type = params['type'];
-      this.currentUserId = JSON.parse(localStorage.currentUser).id;
+      this.currentUserId = JSON.parse(localStorage.currentUser).login;
       this.currentUserLogin = JSON.parse(localStorage.currentUser).login;
     }, error => {
       this.appComponent.showError(error, 'Loading error');

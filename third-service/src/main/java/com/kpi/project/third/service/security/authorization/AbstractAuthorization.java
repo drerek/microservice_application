@@ -10,7 +10,7 @@ public abstract class AbstractAuthorization {
         this.authenticationFacade = authenticationFacade;
     }
 
-    public boolean isUserCorrect(int userId) {
-        return userId == authenticationFacade.getAuthentication().getId();
+    public boolean isUserCorrect(String userId) {
+        return userId.equals(authenticationFacade.getAuthentication().getLogin());
     }
 }

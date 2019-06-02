@@ -13,11 +13,11 @@ public class FolderAuthorization extends AbstractAuthorization{
         super(authenticationFacade);
     }
 
-    public boolean isFolderCorrect(int userId, Folder folder) {
-        return isUserCorrect(userId) && userId == folder.getUserId();
+    public boolean isFolderCorrect(String userId, Folder folder) {
+        return isUserCorrect(userId) && userId.equals(folder.getUserId());
     }
 
-    public boolean isFolderCorrect(int userId, int folderId, Folder folder) {
+    public boolean isFolderCorrect(String userId, int folderId, Folder folder) {
         return isUserCorrect(userId) && folderId == folder.getFolderId();
     }
 }

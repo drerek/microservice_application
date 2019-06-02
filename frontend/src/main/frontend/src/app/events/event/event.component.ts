@@ -20,7 +20,7 @@ export class EventComponent implements OnInit {
   eventId: number;
   folderId: number;
   eventt: Evento;
-  currentUserId: number;
+  currentUserId: String;
   currentUserLogin: string;
   alreadyHasParticipant: boolean;
   loginInput: string = "";
@@ -60,7 +60,7 @@ export class EventComponent implements OnInit {
       this.eventId = params['eventId'];
       this.folderId = params['folderId'];
       this.type = params['type'];
-      this.currentUserId = JSON.parse(localStorage.currentUser).id;
+      this.currentUserId = JSON.parse(localStorage.currentUser).login;
       this.currentUserLogin = JSON.parse(localStorage.currentUser).login;
       this.alreadyHasParticipant = false;
       this.getCurrentDate();
@@ -119,7 +119,7 @@ export class EventComponent implements OnInit {
   isParticipantt() {
     if (this.eventt.participants !== null) {
       for (let profile of this.eventt.participants) {
-        if (profile.id === this.currentUserId) {
+        if (profile.login === this.currentUserId) {
           this.isParticipant = true;
           break;
         }

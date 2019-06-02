@@ -13,7 +13,7 @@ export class FolderListService {
 
   initPrePath() {
     this.currentUser = JSON.parse(localStorage.currentUser);
-    this.prePath = `third/users/${this.currentUser.id}`;
+    this.prePath = `third/users/${this.currentUser.login}`;
   }
 
   getFoldersList(): Observable<any> {
