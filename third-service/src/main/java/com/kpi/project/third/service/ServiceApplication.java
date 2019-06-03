@@ -11,7 +11,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import java.util.Locale;
 
 @SpringBootApplication
-@EnableDiscoveryClient
 @EnableScheduling
 public class ServiceApplication extends SpringBootServletInitializer {
 

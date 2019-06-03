@@ -23,7 +23,7 @@ public interface EventDao extends Dao<Event> {
 
     Event createEvent(Event model, String userId);
 
-    void addParticipant(String ownerId, int participantId, int eventId);
+    void addParticipant(String ownerId, String participantId, int eventId);
 
     List<Event> getPeriodEvents(String userId, String startDate, String endDate);
 
@@ -35,6 +35,6 @@ public interface EventDao extends Dao<Event> {
 
     Event deleteMembers(Event event);
 
-    void deleteParticipant(String ownerId, int eventId, int participantId);
+    void deleteParticipant(String ownerId, int eventId, String participantId);
 
 }

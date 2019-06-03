@@ -186,7 +186,7 @@ public class EventDaoImpl extends AbstractDao<Event> implements EventDao {
         }
     }
 
-    public void addParticipant(String ownerId, int participantId, int eventId) {
+    public void addParticipant(String ownerId, String participantId, int eventId) {
         log.debug("Try to insert participant to event with participant id '{}', event id '{}', owner id '{}'", participantId, eventId, ownerId);
         int result;
 
@@ -247,7 +247,7 @@ public class EventDaoImpl extends AbstractDao<Event> implements EventDao {
     }
 
     @Override
-    public void deleteParticipant(String ownerId, int eventId, int participantId) {
+    public void deleteParticipant(String ownerId, int eventId, String participantId) {
         int result;
 
         log.debug("Try to delete event members with eventId '{}'", eventId);
@@ -454,6 +454,7 @@ public class EventDaoImpl extends AbstractDao<Event> implements EventDao {
             tempUser.setLogin(participant);
             users.add(tempUser);
         }
+        log.debug("Participants are"+users);
         log.debug("Participants for event with id '{}' found and counted '{}'", event.getEventId(), participants.size());
 
         return users;

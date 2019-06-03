@@ -72,13 +72,13 @@ export class EventService {
     return this.http.delete(`${this.prePath}/events/${eventt.eventId}/participants/`, {headers: headers});
   }
 
-  deleteParticipant(eventt: Evento, participantIndex: number): Observable<any> {
+  deleteParticipant(eventt: Evento, participantIndex: string): Observable<any> {
     this.initPrePath();
 
     let headers = new HttpHeaders()
       .set("Authorization", `Bearer ${this.currentUser.token}`);
 
-    return this.http.delete(`${this.prePath}/events/${eventt.eventId}/participants/` + eventt.participants[participantIndex].id, {headers: headers});
+    return this.http.delete(`${this.prePath}/events/${eventt.eventId}/participants/` + eventt.participants[participantIndex].login, {headers: headers});
   }
 
   getEventsByType(eventType: string, folderId: number): Observable<any> {

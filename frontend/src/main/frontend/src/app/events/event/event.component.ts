@@ -8,6 +8,7 @@ import {AppComponent} from "../../app.component";
 import {FriendService} from "../../account/friends/friend.service";
 import {FormControl} from "@angular/forms";
 import {AccountService} from "../../account/account.service";
+import {log} from "util";
 
 @Component({
   selector: 'app-event',
@@ -42,7 +43,7 @@ export class EventComponent implements OnInit {
   queryDeleteParticipants: string[] = [];
   queryUsers: string[] = [];
   place:string;
-  ownerId:number;
+  ownerId:string;
 
 
   constructor(private eventService: EventService,
@@ -283,27 +284,20 @@ export class EventComponent implements OnInit {
   }
 
   deleteParticipant(login: string) {
+
     this.spinner.show();
 
-    let deletedProfileIndex = -1;
+    let deletedProfileIndex = login;
 
     this.hasParticipant = false;
 
-    if (this.eventt.participants !== null && this.eventt.participants.length !== 0) {
-      for (let profile of this.eventt.participants) {
-        if (profile.login === login) {
-          this.hasParticipant = true;
-          deletedProfileIndex = this.eventt.participants.indexOf(profile, 0);
-          break;
-        }
-      }
-    }
+    log("~~~"+deletedProfileIndex);
     this.loginInput = "";
-    if (this.currentUserLogin !== login && deletedProfileIndex !== -1) {
+    if (this.currentUserLogin !== login && !deletedProfileIndex) {
       this.eventService.deleteParticipant(this.eventt, deletedProfileIndex).subscribe(
         deleted => {
           this.showSuccess(deleted.toString(), 'Success!');
-          this.eventt.participants.splice(deletedProfileIndex, 1);
+         // this.eventt.participants.splice(deletedProfileIndex, 1);
           this.spinner.hide();
         }, error => {
           this.appComponent.showError('Participant with this login does not exist', 'Error!');

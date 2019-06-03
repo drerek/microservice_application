@@ -200,7 +200,7 @@ public class EventService {
             throw new LoginNotFoundException(env.getProperty(EXCEPTION_LOGIN_NOT_FOUND));
         }
 
-        eventDao.addParticipant(ownerId, user.getId(), eventId);
+        eventDao.addParticipant(ownerId, user.getLogin(), eventId);
 
         log.debug("Participant with login '{}' was added", login);
 
@@ -217,7 +217,7 @@ public class EventService {
         return eventDao.deleteParticipants(ownerId, event);
     }
 
-    public void deleteParticipant(String ownerId, int eventId, int participantId) {
+    public void deleteParticipant(String ownerId, int eventId, String participantId) {
         log.debug("Trying to delete events from DB by ownerId '{}', eventId '{}' and participantId '{}'", ownerId, eventId, participantId);
 
         eventDao.deleteParticipant(ownerId, eventId, participantId);

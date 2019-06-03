@@ -115,7 +115,7 @@ public class EventController {
 
     @DeleteMapping("{eventId}/participants/{participantId}")
     @PreAuthorize("@eventAuthorization.isUserCorrect(#userId)")
-    public ResponseEntity<String> deleteParticipant(@PathVariable String userId, @PathVariable int eventId, @PathVariable int participantId) {
+    public ResponseEntity<String> deleteParticipant(@PathVariable String userId, @PathVariable int eventId, @PathVariable String participantId) {
         log.debug("Trying to delete participant with id {} of eventId '{}'", participantId, eventId);
 
         eventService.deleteParticipant(userId, eventId, participantId);
