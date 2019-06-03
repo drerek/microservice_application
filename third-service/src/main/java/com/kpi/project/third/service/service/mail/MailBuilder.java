@@ -59,7 +59,6 @@ public class MailBuilder {
 
     public MailBuilder setFile(MultipartFile file) {
         this.multipartFile = file;
-        System.out.println("setting "+file.getSize());
         this.fileName = "myFile.pdf";
         return this;
     }

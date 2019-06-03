@@ -2,7 +2,6 @@
 
 ALTER TABLE friend DROP CONSTRAINT friend_fk_user_s;
 ALTER TABLE friend DROP CONSTRAINT friend_fk_user_r;
-ALTER TABLE uuser DROP CONSTRAINT uuser_fk_event;
 
 ALTER TABLE friend ADD CONSTRAINT friend_fk_user_s FOREIGN KEY(sender_id) REFERENCES uuser(user_id);
 ALTER TABLE friend ADD CONSTRAINT friend_fk_user_r FOREIGN KEY(receiver_id) REFERENCES uuser(user_id);

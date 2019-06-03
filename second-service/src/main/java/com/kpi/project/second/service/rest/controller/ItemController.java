@@ -41,7 +41,6 @@ public class ItemController {
     @PostMapping
     @PreAuthorize("@itemAuthorization.isCorrectItem(#userId, #item)")
     public ResponseEntity<Item> addItem(@PathVariable String userId, @Valid @RequestBody Item item) {
-        log.debug("~~~"+userId+" "+item);
         log.debug("Trying to save item {}", item);
 
         Item addedItem = itemService.addItem(item);

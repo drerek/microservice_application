@@ -20,11 +20,7 @@ public class JwtService {
 
     private static Logger log = LoggerFactory.getLogger(JwtService.class);
 
-    private final static String JWT_SUBJECT = "jwt.subject";
-    private final static String JWT_ISSUER = "jwt.issuer";
     private final static String JWT_LOGIN = "jwt.login";
-    private final static String JWT_EMAIL = "jwt.email";
-    private final static String JWT_ID = "jwt.id";
 
     @Autowired
     private Environment env;

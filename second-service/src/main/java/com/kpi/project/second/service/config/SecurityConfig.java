@@ -5,14 +5,12 @@ import com.kpi.project.second.service.security.jwt.JwtAuthenticationEntryPoint;
 import com.kpi.project.second.service.security.jwt.JwtAuthenticationProvider;
 import com.kpi.project.second.service.security.jwt.JwtSuccessHandler;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -24,7 +22,6 @@ import java.util.Collections;
 
 import static com.kpi.project.second.service.keys.Key.URL_API_PATTERN;
 import static com.kpi.project.second.service.keys.Key.URL_AUTH_PATTERN;
-import static com.kpi.project.second.service.keys.Key.URL_API2_PATTERN;
 
 
 @Configuration
@@ -66,6 +63,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(env.getProperty(URL_AUTH_PATTERN)).permitAll()
                 .antMatchers(env.getProperty(URL_API_PATTERN)).authenticated();
-//                .antMatchers(env.getProperty(URL_API2_PATTERN)).authenticated();
     }
 }

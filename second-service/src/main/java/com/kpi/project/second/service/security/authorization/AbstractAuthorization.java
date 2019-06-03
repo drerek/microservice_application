@@ -11,8 +11,6 @@ public abstract class AbstractAuthorization {
     }
 
     public boolean isUserCorrect(String userLogin) {
-        System.out.println("userlogin="+userLogin);
-        System.out.println("auth_login="+authenticationFacade.getAuthentication().getLogin());
         return userLogin.equals(authenticationFacade.getAuthentication().getLogin());
     }
 }

@@ -1,6 +1,5 @@
 package com.kpi.project.second.service.dao;
 
-import com.kpi.project.second.service.entity.Item;
 import com.kpi.project.second.service.entity.ItemComment;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
