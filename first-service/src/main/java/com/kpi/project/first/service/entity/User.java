@@ -46,12 +46,7 @@ public class User {
 
     private String imgPath;
 
-    private int pinedEventId;
-
     private String periodicalEmail;
-
-    private String pinedEventName;
-    private String pinedEventDate;
 
     private String registerDate;
 }
