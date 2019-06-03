@@ -28,14 +28,9 @@ export class AppComponent {
   }
 
   modifyHeader(location) {
-    if (location.url === "/login" || location.url === "/register" || location.url === '/' || location.url === '/continueReg'
-    || location.url === "/recovery" || location.url === "/thankyou"
-      || (location.url && (location.url.toString().startsWith("/recovery") || location.url.toString().startsWith("/confirmation"))))
-    {
-      this.showLogout = false;
-    } else {
-      this.showLogout = true;
-    }
+    this.showLogout = !(location.url === "/login" || location.url === "/register" || location.url === '/' || location.url === '/continueReg'
+      || location.url === "/recovery" || location.url === "/thankyou"
+      || (location.url && (location.url.toString().startsWith("/recovery") || location.url.toString().startsWith("/confirmation"))));
   }
 
   goToProfile(){
@@ -54,7 +49,7 @@ export class AppComponent {
       title = 'Server Error'
     } if(error.status === 401){
       message = 'Please login to the system again';
-      title = 'Authentication failed'
+      title = 'Authentication failed';
       this.logout()
     }
     else {

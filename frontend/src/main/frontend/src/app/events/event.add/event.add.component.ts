@@ -6,6 +6,7 @@ import {Evento} from "../event";
 import {ImageUploadService} from "../image.upload.service";
 import {FormControl} from "@angular/forms";
 import {MapsAPILoader} from "@agm/core";
+// @ts-ignore
 import {} from '@types/googlemaps';
 import {AppComponent} from "../../app.component";
 import {EventService} from "../event.service";
