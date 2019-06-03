@@ -20,6 +20,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -438,19 +439,24 @@ public class EventDaoImpl extends AbstractDao<Event> implements EventDao {
     @Override
     public List<User> getParticipants(Event event) {
         log.debug("Try to get participants for event with id '{}'", event.getEventId());
-        List<User> participants;
+        List<String> participants;
 
         try {
-            participants = jdbcTemplate.query(env.getProperty(EVENT_GET_PARTICIPANTS),
-                    new Object[]{event.getEventId()}, new UserRowMapper());
+            participants = jdbcTemplate.queryForList(env.getProperty(EVENT_GET_PARTICIPANTS),
+                    new Object[]{event.getEventId()}, String.class);
         } catch (DataAccessException e) {
             log.error("Query fails by getting participants for event with id '{}'", event.getEventId(), e);
             throw new DatabaseWorkException(env.getProperty(EXCEPTION_DATABASE_WORK));
         }
-
+        List<User> users= new ArrayList<User>();
+        for (String participant :participants){
+            User tempUser = new User();
+            tempUser.setLogin(participant);
+            users.add(tempUser);
+        }
         log.debug("Participants for event with id '{}' found and counted '{}'", event.getEventId(), participants.size());
 
-        return participants;
+        return users;
 
     }
 }
