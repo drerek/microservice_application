@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: zuul-gateway
+
+server:
+    port: 8073
+
+zuul:
+  routes:
+    first-service:
+      path: /auth
+      serviceId: first-service
+      srtripPrefix: false
+    first-service-api:
+      path: /api
+      serviceId: first-service
+      srtripPrefix: false
+    second-service:
+      path: /second
+      serviceId: second-service
+      srtripPrefix: false
+    third-service:
+      path: /third
+      serviceId: third-service
+      srtripPrefix: false
+
+eureka:
+    instance:
+           preferIpAddress: true
+    client:
+           registerWithEureka: true
+           fetchRegistry: true
+           serviceUrl:
+              defaultZone: http://34.73.163.14:8761/eureka/
