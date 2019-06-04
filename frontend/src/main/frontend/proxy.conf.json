@@ -1,24 +1,24 @@
 {
   "/auth": {
-    "target": "http://localhost:8100",
+    "target": "http://35.193.163.143:8073",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"
   },
   "/api": {
-    "target": "http://localhost:8100",
+    "target": "http://35.193.163.143:8073",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"
   },
   "/second": {
-    "target": "http://localhost:8200",
+    "target": "http://35.193.163.143:8073",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"
   },
   "/third": {
-    "target": "http://localhost:8300",
+    "target": "http://35.193.163.143:8073",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"

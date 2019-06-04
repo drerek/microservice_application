@@ -191,7 +191,7 @@ public class EventService {
         HttpEntity entity = new HttpEntity(headers);
 
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<User> responseEntity = restTemplate.exchange("http://localhost:8100/api/profile/"+login+"/", HttpMethod.GET,entity,User.class);
+        ResponseEntity<User> responseEntity = restTemplate.exchange("http://35.193.163.143:8073/api/profile/"+login+"/", HttpMethod.GET,entity,User.class);
         User user = responseEntity.getBody();
         log.debug("~~~" + user);
 
