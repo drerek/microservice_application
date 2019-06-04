@@ -34,33 +34,15 @@ public class SpringBootMicroserviceEurekaNamingServerApplication {
 @RestController
 class ServiceInstanceRestontorller {
 
-    private final PeerAwareInstanceRegistry registry;
-
     private final DiscoveryClient discoveryClient;
 
-    public ServiceInstanceRestontorller(DiscoveryClient discoveryClient, PeerAwareInstanceRegistry registry) {
+    public ServiceInstanceRestontorller(DiscoveryClient discoveryClient) {
         this.discoveryClient = discoveryClient;
-        this.registry = registry;
     }
 
     @RequestMapping("/service-instances/{applicationName}")
     public List<ServiceInstance> serviceInstancesByAppName(@PathVariable String applicationName) {
         return this.discoveryClient.getInstances(applicationName);
-    }
-
-    @GetMapping("/all")
-    public List<String> getAll(){
-        System.out.println(this.discoveryClient.description());
-        System.out.println(this.discoveryClient.getServices());
-        return this.discoveryClient.getServices();
-    }
-
-
-    @GetMapping("/all2")
-    public void getAll2(){
-        Applications applications = registry.getApplications();
-
-        System.out.println(applications.getAppsHashCode());
     }
 }
 
