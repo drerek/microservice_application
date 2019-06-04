@@ -1,9 +1,15 @@
 package com.techprimers.zuul.filter;
 
 import com.netflix.zuul.ZuulFilter;
+import com.netflix.zuul.context.RequestContext;
+import com.netflix.zuul.exception.ZuulException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.ReflectionUtils;
+
 
 public class PostFilter extends ZuulFilter {
-
+  private static final Logger LOG = LoggerFactory.getLogger(PostFilter.class);
   @Override
   public String filterType() {
     return "post";
@@ -27,6 +33,7 @@ public class PostFilter extends ZuulFilter {
 
       if (e != null && e instanceof ZuulException) {
         ZuulException zuulException = (ZuulException)e;
+        
         LOG.error("Zuul failure detected: " + zuulException.getMessage(), zuulException);
 
         // Remove error code to prevent further error handling in follow up filters
