@@ -3,7 +3,9 @@ package com.kpi.project.first.service;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+//import org.springframework.cloud.client.discovery.DiscoveryClient;
+//import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -11,7 +13,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import java.util.Locale;
 
 @SpringBootApplication
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
+@EnableEurekaClient
 @EnableScheduling
 public class ServiceApplication extends SpringBootServletInitializer {
 
